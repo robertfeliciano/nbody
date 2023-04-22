@@ -82,7 +82,7 @@ int main(int argc, char* argv[]){
 
         // note: OpenMP SIMD is only noticable when compiled with -O1 or -O2
         // as -O3 tries to auto-vectorize loops like these
-        // #pragma omp simd
+        #pragma omp simd
         for (int i = 0; i < n; i++){
             bodies[i].x += bodies[i].vx*dt;
             bodies[i].y += bodies[i].vy*dt;
