@@ -32,7 +32,7 @@ typedef struct System {
  */
 void init_bodies(float* bods, int fields){
     for (int i = 0; i < fields; i++){
-        bods[i] = (rand() / (float)RAND_MAX);
+        bods[i] = 2.0f * (rand() / (float)RAND_MAX) - 1.0f;
     }
 }
 
@@ -72,13 +72,14 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
     }
 }
 
-
+#ifdef CHECK
 inline void host_interaction(float4* p, float4* v, float dt, int n){
     #pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < n; i++){
         // forces in the x, y, z direction
         float fx = 0.0f, fy = 0.0f, fz = 0.0f;
 
+        #pragma unroll
         for (int j = 0; j < n; j++){
             float dx = p[j].x - p[i].x;
             float dy = p[j].y - p[i].y;
@@ -97,6 +98,7 @@ inline void host_interaction(float4* p, float4* v, float dt, int n){
         v[i].z += dt*fz;
     }
 }
+#endif
 
 int main(int argc, char* argv[]){
 
