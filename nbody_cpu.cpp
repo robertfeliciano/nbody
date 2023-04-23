@@ -74,8 +74,8 @@ int main(int argc, char* argv[]){
     Body* bodies = (Body*) tmp;
 
     init_bodies(tmp, 6*n);
-
-    for (int i = 0; i < iters; i++){
+    
+    for (int iter = 0; iter < iters; iter++){
         auto start = timer::now();
 
         simulate_interaction(bodies, n);
@@ -92,7 +92,7 @@ int main(int argc, char* argv[]){
         auto end = timer::now();
         auto elapsed = duration_cast<milliseconds>(end - start).count();
 
-        printf("Iter %d took %ld milliseconds\n", i, elapsed);
+        printf("Iter %d took %ld milliseconds\n", iter, elapsed);
     }
 
     free(tmp);
