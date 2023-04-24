@@ -10,6 +10,7 @@ using timer = high_resolution_clock;
 
 const float dt = 0.01f; // time delta
 const int iters = 10;   // number of iterations for the simulation to run
+const float G = 6.67e-11;
 
 /**
  * @brief simulated body 
