@@ -9,7 +9,7 @@
 using namespace std::chrono;
 using timer = high_resolution_clock;
 
-const int iters = 10;   // number of iterations for the simulation to run
+int iters = 2;   // number of iterations for the simulation to run
 
 /**
  * @brief simulated system 
@@ -36,6 +36,21 @@ void init_bodies(float* bods, int fields){
     }
 }
 
+inline __device__ float quick_rsqrt(float num){
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = num * 0.5F;
+    y = num;
+    i = * ( long * ) &y;
+    i = 0x5f3759df - ( i >> 1 );
+    y = * ( float * ) &i;
+    y = y * (threehalfs - (x2 * y * y) );
+
+    return y;
+}
+
 __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
     int b = blockDim.x * blockIdx.x + threadIdx.x;
     if (b < n){
@@ -57,7 +72,7 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
                 float dy = others[j].y - p[b].y;
                 float dz = others[j].z - p[b].z;
                 float d = dx*dx + dy*dy + dz*dz + EPSILON;
-                float denom = rsqrtf(d);
+                float denom = quick_rsqrt(d);
                 float denom_cubed = denom * denom * denom;
 
                 fx += dx * denom_cubed; 
@@ -73,6 +88,22 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
 }
 
 #ifdef CHECK
+inline float q_rsqrt(float num){
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = num * 0.5F;
+    y = num;
+    i = * ( long * ) &y;
+    i = 0x5f3759df - ( i >> 1 );
+    y = * ( float * ) &i;
+    y = y * (threehalfs - (x2 * y * y) );
+
+    return y;
+}
+
+
 inline void host_interaction(float4* p, float4* v, float dt, int n){
     #pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < n; i++){
@@ -85,7 +116,7 @@ inline void host_interaction(float4* p, float4* v, float dt, int n){
             float dy = p[j].y - p[i].y;
             float dz = p[j].z - p[i].z;
             float d = dx*dx + dy*dy + dz*dz + EPSILON;
-            float denom = rsqrtf(d);
+            float denom = q_rsqrt(d);
             float denom_cubed = denom * denom * denom;
 
             fx += dx * denom_cubed; 
@@ -105,6 +136,8 @@ int main(int argc, char* argv[]){
     int n = 30000;
     if (argc > 1)
         n = atoi(argv[1]);
+    if (argc > 2)
+        iters = atoi(argv[2]);
         
     const float dt = 0.01f; // time delta
         
@@ -144,15 +177,14 @@ int main(int argc, char* argv[]){
     int dimGrid = (n + BLOCKSZ - 1)/BLOCKSZ;
 
     for (int i = 0; i < iters; i++){
-        // cudaEventRecord was giving me zeros all the time. no idea why
-        // decided to go with chrono because who cares
-
         // first kernel launch takes forever
         // https://stackoverflow.com/questions/57709333/cuda-kernel-runs-faster-the-second-time-it-is-run-why
 
         cudaMemcpy(d_tmp, tmp, bytes, cudaMemcpyHostToDevice);
         // call kernel
         #ifndef CHECK
+        // cudaEventRecord was giving me zeros all the time. no idea why
+        // decided to go with chrono because who cares
         auto start = timer::now();
         #endif
 
