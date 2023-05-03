@@ -34,13 +34,23 @@ typedef struct System {
  */
  void init_bodies(float* bods, int fields){
     std::default_random_engine generator;
-    std::uniform_int_distribution<int> distribution(0,9);
+    std::uniform_int_distribution<int> distribution(100,200);
+    std::uniform_int_distribution<int> mass_distribution(3000,9000);
+    int on_mass = 0;
     for (int i = 0; i < fields; i++){
         bods[i] = static_cast<float>(distribution(generator));
+        if (on_mass == 3){
+            bods[i] = static_cast<float>(mass_distribution(generator));
+            on_mass = 0;
+            continue;
+        }
+        on_mass++;
     }
 }
 
 __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
+    float4 center_obj = { 0.0f, 0.0f, 0.0f, 5000.0f };
+
     int i = blockDim.x * blockIdx.x + threadIdx.x;
     if (i < n) {
         float fx = 0.0f; float fy = 0.0f; float fz = 0.0f;
@@ -60,6 +70,20 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
             fy += m_j * dy * denom_cubed; 
             fz += m_j * dz * denom_cubed;
         }
+
+        // calculate interaction with center mass
+        float dx = p[i].x - center_obj.x;
+        float dy = p[i].y - center_obj.y;
+        float dz = p[i].z - center_obj.z;
+        float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
+        float denom = rsqrtf(d);
+        float denom_cubed = denom * denom * denom;
+
+        float m_c = center_obj.w;
+
+        fx -= m_c * dx * denom_cubed; 
+        fy -= m_c * dy * denom_cubed; 
+        fz -= m_c * dz * denom_cubed;
   
         v[i].x += dt * G * fx;
         v[i].y += dt * G * fy;
@@ -69,6 +93,8 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
 
 #ifdef CHECK
 inline void host_interaction(float4* p, float4* v, float dt, int n){
+    float4 center_obj = { 0.0f, 0.0f, 0.0f, 5000.0f };
+
     #pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < n; i++){
         // forces in the x, y, z direction
@@ -88,6 +114,21 @@ inline void host_interaction(float4* p, float4* v, float dt, int n){
             fy += m_j * dy * denom_cubed; 
             fz += m_j * dz * denom_cubed;
         }
+
+        // calculate interaction with center mass
+        float dx = p[i].x - center_obj.x;
+        float dy = p[i].y - center_obj.y;
+        float dz = p[i].z - center_obj.z;
+        float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
+        float denom = rsqrtf(d);
+        float denom_cubed = denom * denom * denom;
+
+        float m_c = center_obj.w;
+
+        fx -= m_c * dx * denom_cubed; 
+        fy -= m_c * dy * denom_cubed; 
+        fz -= m_c * dz * denom_cubed;
+
         v[i].x += dt * G * fx;
         v[i].y += dt * G * fy;
         v[i].z += dt * G * fz;
@@ -174,6 +215,13 @@ int main(int argc, char* argv[]){
     #ifdef CHECK
     const float epsilon = 0.0001;
     for (int i = 0; i < n; i++){
+
+        if (i == 10){
+            printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
+            printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
+            printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
+        }
+
         if (((abs(bodies.p[i].x) - abs(h_bodies.p[i].x)) > epsilon) ||
             ((abs(bodies.p[i].y) - abs(h_bodies.p[i].y)) > epsilon) ||
             ((abs(bodies.p[i].z) - abs(h_bodies.p[i].z)) > epsilon)){

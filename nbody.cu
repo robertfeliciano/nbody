@@ -37,13 +37,22 @@ typedef struct System {
  */
 void init_bodies(float* bods, int fields){
     std::default_random_engine generator;
-    std::uniform_int_distribution<int> distribution(0,9);
+    std::uniform_int_distribution<int> distribution(100,200);
+    std::uniform_int_distribution<int> mass_distribution(3000,9000);
+    int on_mass = 0;
     for (int i = 0; i < fields; i++){
         bods[i] = static_cast<float>(distribution(generator));
+        if (on_mass == 3){
+            bods[i] = static_cast<float>(mass_distribution(generator));
+            on_mass = 0;
+            continue;
+        }
+        on_mass++;
     }
 }
 
 __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
+    float4 center_obj = { 0.0f, 0.0f, 0.0f, 5000.0f };
     int b = blockDim.x * blockIdx.x + threadIdx.x;
     if (b < n){
         // forces in the x, y, z direction
@@ -74,7 +83,22 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
                 fz += m_j * dz * denom_cubed;
             }
             __syncthreads();
-        }
+        }       
+        
+        // calculate interaction with center mass
+        float dx = p[b].x - center_obj.x;
+        float dy = p[b].y - center_obj.y;
+        float dz = p[b].z - center_obj.z;
+        float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
+        float denom = rsqrtf(d);
+        float denom_cubed = denom * denom * denom;
+
+        float m_c = center_obj.w;
+
+        fx -= m_c * dx * denom_cubed; 
+        fy -= m_c * dy * denom_cubed; 
+        fz -= m_c * dz * denom_cubed;
+
         v[b].x += dt * G * fx;
         v[b].y += dt * G * fy;
         v[b].z += dt * G * fz;
