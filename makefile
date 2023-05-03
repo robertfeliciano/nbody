@@ -13,5 +13,8 @@ cuda:
 basic:
 	nvcc -Xcompiler=-fopenmp -ftz=true -DCHECK -prec-sqrt=true basic.cu -o bin/nbody
 
+report:
+	nvcc -Xcompiler=-fopenmp -ftz=true --generate-line-info nbody.cu -o bin/nbody
+
 clean:
 	rm bin/*

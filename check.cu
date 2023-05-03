@@ -5,7 +5,7 @@
 #include <random>
 
 #define EPSILON 1e-8f
-#define BLOCKSZ 1024
+#define BLOCKSZ 512
 #define G 6.67e-11f
 
 using namespace std::chrono;
@@ -143,6 +143,10 @@ inline void host_interaction(float4* p, float4* v, float dt, int n){
         v[i].x += dt * G * fx;
         v[i].y += dt * G * fy;
         v[i].z += dt * G * fz;
+
+        // p[i].x += v[i].x*dt;
+        // p[i].y += v[i].y*dt;
+        // p[i].z += v[i].z*dt;
     }
 }
 #endif
@@ -227,20 +231,20 @@ int main(int argc, char* argv[]){
     const float epsilon = 0.0001;
     for (int i = 0; i < n; i++){
 
-        // if (i == 10){
-        //     printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
-        //     printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
-        //     printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
-        // }
+        if (i == 10){
+            printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
+            printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
+            printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
+        }
         // if (h_bodies.p[i].x > 200 || 
         //     h_bodies.p[i].y > 200 || 
         //     h_bodies.p[i].z > 200){
         //         printf("stuff is working haha yes\n");
         //     }
 
-        if (((abs(bodies.p[i].x) - abs(h_bodies.p[i].x)) > epsilon) ||
-            ((abs(bodies.p[i].y) - abs(h_bodies.p[i].y)) > epsilon) ||
-            ((abs(bodies.p[i].z) - abs(h_bodies.p[i].z)) > epsilon)){
+        if ((abs(abs(bodies.p[i].x) - abs(h_bodies.p[i].x)) > epsilon) ||
+            (abs(abs(bodies.p[i].y) - abs(h_bodies.p[i].y)) > epsilon) ||
+            (abs(abs(bodies.p[i].z) - abs(h_bodies.p[i].z)) > epsilon)){
                 printf("Host bodies and GPU bodies mismatch!\n");
                 printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
                 printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);

@@ -5,7 +5,7 @@
 #include <random>
 
 #define EPSILON 1e-8f
-#define BLOCKSZ 1024
+#define BLOCKSZ 768
 #define G 6.67e-11f
 
 using namespace std::chrono;
@@ -102,6 +102,10 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
         v[b].x += dt * G * fx;
         v[b].y += dt * G * fy;
         v[b].z += dt * G * fz;
+
+        // p[b].x += v[b].x*dt;
+        // p[b].y += v[b].y*dt;
+        // p[b].z += v[b].z*dt;
     }
 }
 

@@ -67,7 +67,7 @@ inline void simulate_interaction(Body* b, int n){
             float dx = b[j].x - b[i].x;
             float dy = b[j].y - b[i].y;
             float dz = b[j].z - b[i].z;
-            float d = dx*dx + dy*dy + dz*dz + EPSILON;
+            float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
             float denom = 1.0f / sqrtf(d);
             float denom_cubed = denom * denom * denom;
 

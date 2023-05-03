@@ -6,7 +6,7 @@
 
 #define EPSILON 1e-8f
 #define G 6.67e-11f
-#define BLOCKSZ 1024
+#define BLOCKSZ 768
 
 using namespace std::chrono;
 using timer = high_resolution_clock;
@@ -187,11 +187,11 @@ int main(int argc, char* argv[]){
 
         cudaMemcpy(d_tmp, tmp, bytes, cudaMemcpyHostToDevice);
         // call kernel
-        #ifndef CHECK
+        // #ifndef CHECK
         // cudaEventRecord was giving me zeros all the time. no idea why
         // decided to go with chrono because who cares
         auto start = timer::now();
-        #endif
+        // #endif
 
         simulate_interaction<<<dimGrid, BLOCKSZ>>>(d_bodies.p, d_bodies.v, dt, n);
         cudaMemcpy(tmp, d_tmp, bytes, cudaMemcpyDeviceToHost);
@@ -203,24 +203,24 @@ int main(int argc, char* argv[]){
             bodies.p[b].z += bodies.v[b].z*dt;
         }
 
-        #ifndef CHECK
+        // #ifndef CHECK
         auto end = timer::now();
         auto elapsed = duration_cast<microseconds>(end - start).count();
         float elapsed_ms = static_cast<float>(elapsed) / 1000;
 
         printf("Iter %d took %.2f milliseconds on the device\n", i, elapsed_ms);
-        #endif
+        // #endif
     }
     
     #ifdef CHECK
     const float epsilon = 0.0001;
     for (int i = 0; i < n; i++){
 
-        if (i == 10){
-            printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
-            printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
-            printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
-        }
+        // if (i == 10){
+        //     printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
+        //     printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
+        //     printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
+        // }
 
         if (((abs(bodies.p[i].x) - abs(h_bodies.p[i].x)) > epsilon) ||
             ((abs(bodies.p[i].y) - abs(h_bodies.p[i].y)) > epsilon) ||
