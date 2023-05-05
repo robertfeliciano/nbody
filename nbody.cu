@@ -41,11 +41,13 @@ void init_bodies(float* bods, int fields){
     std::uniform_int_distribution<int> mass_distribution(3000,9000);
     int on_mass = 0;
     for (int i = 0; i < fields; i++){
-        bods[i] = static_cast<float>(distribution(generator));
         if (on_mass == 3){
             bods[i] = static_cast<float>(mass_distribution(generator));
             on_mass = 0;
             continue;
+        }
+        else {
+            bods[i] = static_cast<float>(distribution(generator));
         }
         on_mass++;
     }
@@ -73,6 +75,7 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
                 float dy = others[j].y - p[b].y;
                 float dz = others[j].z - p[b].z;
                 float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
+                
                 float denom = rsqrtf(d);
                 float denom_cubed = denom * denom * denom;
 

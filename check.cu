@@ -32,17 +32,19 @@ typedef struct System {
  * @param bods a pointer to body system
  * @param fields the number of total fields we need to fill up
  */
-void init_bodies(float* bods, int fields){
+ void init_bodies(float* bods, int fields){
     std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution(100,200);
     std::uniform_int_distribution<int> mass_distribution(3000,9000);
     int on_mass = 0;
     for (int i = 0; i < fields; i++){
-        bods[i] = static_cast<float>(distribution(generator));
         if (on_mass == 3){
             bods[i] = static_cast<float>(mass_distribution(generator));
             on_mass = 0;
             continue;
+        }
+        else {
+            bods[i] = static_cast<float>(distribution(generator));
         }
         on_mass++;
     }
