@@ -7,12 +7,14 @@ import pandas as pd
 
 def run(n: int) -> float:
     '''
-    Runs the nbody simulation with n bodies for 50 iterations.
+    Runs the nbody simulation with n bodies for 10 iterations.
     Returns the average time a time iteration took to compute.
     '''
-    output = subprocess.run(f"./bin/nbody {n} 50", shell=True, capture_output=True).stdout.decode('utf-8')
+    output = subprocess.run(f"./bin/nbody {n} 10", shell=True, capture_output=True).stdout.decode('utf-8')
     times = np.array([float(t) for t in re.findall(r'\b\d+\.\d\d', output)])
     avg = round(np.average(times), 3)
+    # progress indicator 
+    print(f"average for {n} bodies is {avg} ms.")
     return avg
 
 def time(version: str) -> list[float]:
