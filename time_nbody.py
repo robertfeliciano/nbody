@@ -2,7 +2,6 @@
 import subprocess
 import re
 import numpy as np
-import seaborn as sns
 import pandas as pd
 
 def run(n: int) -> float:
@@ -42,7 +41,7 @@ def main() -> None:
     # df['cuda'] = time('cuda')
     df.to_csv('backup.csv', index=False)
 
-    fig = df.plot(figsize=(10,10)).get_figure()
+    fig = df.plot(figsize=(20,20)).get_figure()
     fig.savefig('graph.pdf')
 
 
