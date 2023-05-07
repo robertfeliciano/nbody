@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 08:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 13:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1013,8 +1013,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  29811 strings out of 478862
- 552437 string characters out of 5858946
- 968470 words of memory out of 6000000
+ 552425 string characters out of 5858946
+ 968440 words of memory out of 6000000
  46760 multiletter control sequences out of 15000+600000
  458148 words of font info for 93 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191

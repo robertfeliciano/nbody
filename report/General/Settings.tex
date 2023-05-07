@@ -18,8 +18,8 @@
 Hoboken, New Jersey\\ \today
 }}
 
-% Define IITB-blue (color of the IITB logo). Can be changed to drastically change the look of the template
-\definecolor{IITB-blue}{RGB}{163, 36, 56}
+% Define SIT-red Can be changed to drastically change the look of the template
+\definecolor{SIT-red}{RGB}{163, 36, 56}
 
 
 % All of the following code can be removed to be left with (close to) default LaTeX behavior. 
@@ -27,26 +27,26 @@ Hoboken, New Jersey\\ \today
 % Sets up hyperlinks in the document to be colored
 \hypersetup{
     colorlinks=true,
-    linkcolor=IITB-blue,
-    urlcolor=IITB-blue,
-    citecolor = IITB-blue
+    linkcolor=SIT-red,
+    urlcolor=SIT-red,
+    citecolor = SIT-red
     }
 \urlstyle{same} % Defines settings for link and reference formatting
 
 
 % Change bullet style for level 1, 2 and 3 respectively for itemize
-\renewcommand{\labelitemi}{\scriptsize\textcolor{IITB-blue}{$\blacksquare$}}% level 1
-\renewcommand{\labelitemii}{\scriptsize\textcolor{IITB-blue}{$\square$}}% level 2
-\renewcommand{\labelitemiii}{\textcolor{IITB-blue}{$\circ$}}% level 3
+\renewcommand{\labelitemi}{\scriptsize\textcolor{SIT-red}{$\blacksquare$}}% level 1
+\renewcommand{\labelitemii}{\scriptsize\textcolor{SIT-red}{$\square$}}% level 2
+\renewcommand{\labelitemiii}{\textcolor{SIT-red}{$\circ$}}% level 3
 
-% \renewcommand{\labelitemi}{\small\textcolor{IITB-blue}{\ding{70}}} % level 1
-% \renewcommand{\labelitemii}{\small\textcolor{IITB-blue}{\ding{71}}}% level 2
-% \renewcommand{\labelitemiii}{\tiny\textcolor{IITB-blue}{\ding{71}}}% level 3
+% \renewcommand{\labelitemi}{\small\textcolor{SIT-red}{\ding{70}}} % level 1
+% \renewcommand{\labelitemii}{\small\textcolor{SIT-red}{\ding{71}}}% level 2
+% \renewcommand{\labelitemiii}{\tiny\textcolor{SIT-red}{\ding{71}}}% level 3
 
 % Change bullet style for level 1, 2 and 3 respectively for enumerate
-\renewcommand{\labelenumi}{\textbf{\textcolor{IITB-blue}{\arabic*.}}}% level 1
-\renewcommand{\labelenumii}{\textbf{\textcolor{IITB-blue}{[\alph*]}}}% level 2
-\renewcommand{\labelenumiii}{\textbf{\textcolor{IITB-blue}{\roman*.}}}% level 3
+\renewcommand{\labelenumi}{\textbf{\textcolor{SIT-red}{\arabic*.}}}% level 1
+\renewcommand{\labelenumii}{\textbf{\textcolor{SIT-red}{[\alph*]}}}% level 2
+\renewcommand{\labelenumiii}{\textbf{\textcolor{SIT-red}{\roman*.}}}% level 3
 
 % Have reference labels be linked to section (section 3 will have fig. 3.1 etc.)
 \counterwithin{equation}{section} % For equations
@@ -61,15 +61,15 @@ Hoboken, New Jersey\\ \today
 \cfoot{Page \thepage}
 
 % Formats section, subsection and subsubsection titles respectively 
-\titleformat{\section}{\sffamily\color{IITB-blue}\Large\bfseries}{\thesection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats section titles
+\titleformat{\section}{\sffamily\color{SIT-red}\Large\bfseries}{\thesection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats section titles
 
-\titleformat{\subsection}{\sffamily\color{IITB-blue}\large\bfseries}{\thesubsection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats subsection titles
+\titleformat{\subsection}{\sffamily\color{SIT-red}\large\bfseries}{\thesubsection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats subsection titles
 
-\titleformat{\subsubsection}{\sffamily\color{IITB-blue}\bfseries}{\thesubsubsection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats subsubsection titles
+\titleformat{\subsubsection}{\sffamily\color{SIT-red}\bfseries}{\thesubsubsection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats subsubsection titles
 
 % Formats captions
-\DeclareCaptionFont{IITB-blue}{\color{IITB-blue}}
-\captionsetup{labelfont={IITB-blue,bf}}
+\DeclareCaptionFont{SIT-red}{\color{SIT-red}}
+\captionsetup{labelfont={SIT-red,bf}}
 
  % Changes font to mlmodern
 \usepackage{mlmodern}
