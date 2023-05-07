@@ -5,6 +5,8 @@
 
 first, compile the version you want run
 
+`cd scripts` because i dont feel like changing the makefile now
+
 `make cuda` for the fully optimized CUDA accelerated version
 
 `make basic` for the basic, unoptimzed CUDA version
