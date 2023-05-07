@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import subprocess
 import re
-import signal
 import numpy as np
 import pandas as pd
 
