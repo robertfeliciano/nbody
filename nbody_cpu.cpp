@@ -121,11 +121,11 @@ int main(int argc, char* argv[]){
             bodies[i].y += bodies[i].vy*dt;
             bodies[i].z += bodies[i].vz*dt;
         }
-
         auto end = timer::now();
-        auto elapsed = duration_cast<milliseconds>(end - start).count();
+        auto elapsed = duration_cast<microseconds>(end - start).count();
+        float elapsed_ms = static_cast<float>(elapsed) / 1000;
 
-        printf("Iter %d took %ld milliseconds\n", iter, elapsed);
+        printf("Iter %d took %.2f milliseconds on the device\n", iter, elapsed_ms);
     }
 
     free(tmp);

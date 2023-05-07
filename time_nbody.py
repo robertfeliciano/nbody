@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import subprocess
 import re
+import signal
 import numpy as np
 import pandas as pd
 
@@ -10,7 +11,7 @@ def run(n: int) -> float:
     Returns the average time a time iteration took to compute.
     '''
     output = subprocess.run(f"./bin/nbody {n} 10", shell=True, capture_output=True).stdout.decode('utf-8')
-    times = np.array([float(t) for t in re.findall(r'\b\d+\.\d\d', output)])
+    times = np.array([float(t) for t in re.findall(r'\d+\.\d\d', output)])
     avg = round(np.average(times), 3)
     # progress indicator 
     print(f"average for {n} bodies is {avg} ms.")
@@ -24,22 +25,26 @@ def time(version: str) -> list[float]:
     avg1k = run(1000)
     avg10k = run(10000)
     avg50k = run(50000)
+    avg100k = run(100000)
+    if version == 'default':
+        return [avg1k, avg10k, avg50k, avg100k, -2.0, -3.0]
     avg300k = run(300000)
+    if version == 'omp':
+        return [avg1k, avg10k, avg50k, avg100k, avg300k, -1.0]
     avg3M = run(3000000)
-    return [avg1k, avg10k, avg50k, avg300k, avg3M]
+    return [avg1k, avg10k, avg50k, avg100k, avg300k, avg3M]
     # return [avg1k, avg10k, avg50k]
 
 def main() -> None:
     versions = ['cuda', 'omp', 'basic', 'default']
     df = pd.DataFrame(columns=versions, 
-                      index=['1K', '10K', '50K', '300K', '3M'])
+                      index=['1K', '10K', '50K', '100K', '300K', '3M'])
                     # index=['1K', '10K', '50K'])
     for v in versions:
         df[v] = time(v)
         # i just need to see some progress indicator lol
         print(df.head())
-    # df['cuda'] = time('cuda')
-    df.to_csv('backup.csv', index=False)
+        df.to_csv('backup.csv', index=False)
 
     fig = df.plot(figsize=(20,20)).get_figure()
     fig.savefig('graph.pdf')

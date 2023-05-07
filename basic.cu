@@ -91,50 +91,6 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
     }
 }
 
-#ifdef CHECK
-inline void host_interaction(float4* p, float4* v, float dt, int n){
-    float4 center_obj = { 0.0f, 0.0f, 0.0f, 5000.0f };
-
-    #pragma omp parallel for schedule(dynamic)
-    for (int i = 0; i < n; i++){
-        // forces in the x, y, z direction
-        float fx = 0.0f, fy = 0.0f, fz = 0.0f;
-
-        for (int j = 0; j < n; j++){
-            float dx = p[j].x - p[i].x;
-            float dy = p[j].y - p[i].y;
-            float dz = p[j].z - p[i].z;
-            float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
-            float denom = rsqrtf(d);
-            float denom_cubed = denom * denom * denom;
-
-            float m_j = p[j].w;
-
-            fx += m_j * dx * denom_cubed; 
-            fy += m_j * dy * denom_cubed; 
-            fz += m_j * dz * denom_cubed;
-        }
-
-        // calculate interaction with center mass
-        float dx = p[i].x - center_obj.x;
-        float dy = p[i].y - center_obj.y;
-        float dz = p[i].z - center_obj.z;
-        float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
-        float denom = rsqrtf(d);
-        float denom_cubed = denom * denom * denom;
-
-        float m_c = center_obj.w;
-
-        fx -= m_c * dx * denom_cubed; 
-        fy -= m_c * dy * denom_cubed; 
-        fz -= m_c * dz * denom_cubed;
-
-        v[i].x += dt * G * fx;
-        v[i].y += dt * G * fy;
-        v[i].z += dt * G * fz;
-    }
-}
-#endif
 
 int main(int argc, char* argv[]){
 
@@ -153,27 +109,6 @@ int main(int argc, char* argv[]){
     init_bodies(tmp, 8*n);
 
     // copy bodies for the cpu to use 
-    #ifdef CHECK
-
-    float* h_tmp = (float*) malloc(bytes);
-    memcpy(h_tmp, tmp, bytes);
-    System h_bodies = { (float4*) h_tmp, ((float4*) h_tmp) + n};
-
-    for (int iter = 0; iter < iters; iter++){
-
-        host_interaction(h_bodies.p, h_bodies.v, dt, n);
-
-        // note: OpenMP SIMD is only noticable when compiled with -O1 or -O2
-        // because -O3 tries to auto-vectorize loops like these
-        #pragma omp simd
-        for (int i = 0; i < n; i++){
-            h_bodies.p[i].x += h_bodies.v[i].x*dt;
-            h_bodies.p[i].y += h_bodies.v[i].y*dt;
-            h_bodies.p[i].z += h_bodies.v[i].z*dt;
-        }
-    }        
-
-    #endif
 
     float* d_tmp;
     cudaMalloc(&d_tmp, bytes);
@@ -211,28 +146,6 @@ int main(int argc, char* argv[]){
         printf("Iter %d took %.2f milliseconds on the device\n", i, elapsed_ms);
         // #endif
     }
-    
-    #ifdef CHECK
-    const float epsilon = 0.0001;
-    for (int i = 0; i < n; i++){
-
-        // if (i == 10){
-        //     printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
-        //     printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
-        //     printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
-        // }
-
-        if (((abs(bodies.p[i].x) - abs(h_bodies.p[i].x)) > epsilon) ||
-            ((abs(bodies.p[i].y) - abs(h_bodies.p[i].y)) > epsilon) ||
-            ((abs(bodies.p[i].z) - abs(h_bodies.p[i].z)) > epsilon)){
-                printf("Host bodies and GPU bodies mismatch!\n");
-                printf("d_body %d.x = %f,\nh_body %d.x = %f\n", i, bodies.p[i].x, i, h_bodies.p[i].x);
-                printf("d_body %d.y = %f,\nh_body %d.y = %f\n", i, bodies.p[i].y, i, h_bodies.p[i].y);
-                printf("d_body %d.z = %f,\nh_body %d.z = %f\n", i, bodies.p[i].z, i, h_bodies.p[i].z);
-            }
-    }
-    free(h_tmp);
-    #endif
 
     free(tmp);
     cudaFree(d_tmp);
