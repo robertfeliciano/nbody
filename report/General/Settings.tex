@@ -1,0 +1,81 @@
+% Give your report a title
+\newcommand\reporttitle{\textbf{N-Body Simulation}}
+
+% Add an experiment number
+\newcommand\iamtheauthor{\textbf{Robert Feliciano}}
+
+% Insert course code, name, quartile number, and year (or any other subtitle)
+\newcommand\reportsubtitle{
+\textbf{CS677}: Final Project Report
+}
+
+\newcommand\professor{ \textbf{Professor Mordohai}}
+
+
+% Date and location (default: current date and IIT Bombay)
+\newcommand\placeanddate{
+\color{black}\textbf{Department of Computer Science\\ Stevens Institute of Technology\\
+Hoboken, New Jersey\\ \today
+}}
+
+% Define SIT-red Can be changed to drastically change the look of the template
+\definecolor{SIT-red}{RGB}{163, 36, 56}
+
+
+% All of the following code can be removed to be left with (close to) default LaTeX behavior. 
+
+% Sets up hyperlinks in the document to be colored
+\hypersetup{
+    colorlinks=true,
+    linkcolor=SIT-red,
+    urlcolor=SIT-red,
+    citecolor = SIT-red
+    }
+\urlstyle{same} % Defines settings for link and reference formatting
+
+
+% Change bullet style for level 1, 2 and 3 respectively for itemize
+\renewcommand{\labelitemi}{\scriptsize\textcolor{SIT-red}{$\blacksquare$}}% level 1
+\renewcommand{\labelitemii}{\scriptsize\textcolor{SIT-red}{$\square$}}% level 2
+\renewcommand{\labelitemiii}{\textcolor{SIT-red}{$\circ$}}% level 3
+
+% \renewcommand{\labelitemi}{\small\textcolor{SIT-red}{\ding{70}}} % level 1
+% \renewcommand{\labelitemii}{\small\textcolor{SIT-red}{\ding{71}}}% level 2
+% \renewcommand{\labelitemiii}{\tiny\textcolor{SIT-red}{\ding{71}}}% level 3
+
+% Change bullet style for level 1, 2 and 3 respectively for enumerate
+\renewcommand{\labelenumi}{\textbf{\textcolor{SIT-red}{\arabic*.}}}% level 1
+\renewcommand{\labelenumii}{\textbf{\textcolor{SIT-red}{[\alph*]}}}% level 2
+\renewcommand{\labelenumiii}{\textbf{\textcolor{SIT-red}{\roman*.}}}% level 3
+
+% Have reference labels be linked to section (section 3 will have fig. 3.1 etc.)
+\counterwithin{equation}{section} % For equations
+\counterwithin{figure}{section} % For figures
+\counterwithin{table}{section} % For tables
+
+% Creates a beautiful header/footer
+\pagestyle{fancy}
+\lhead{\includegraphics[height = 20pt]{Figures/Logos/stevenslogo.png}}
+\rhead{\reporttitle}
+\renewcommand{\footrulewidth}{0.4pt}
+\cfoot{Page \thepage}
+
+% Formats section, subsection and subsubsection titles respectively 
+\titleformat{\section}{\sffamily\color{SIT-red}\Large\bfseries}{\thesection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats section titles
+
+\titleformat{\subsection}{\sffamily\color{SIT-red}\large\bfseries}{\thesubsection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats subsection titles
+
+\titleformat{\subsubsection}{\sffamily\color{SIT-red}\bfseries}{\thesubsubsection\enskip\color{gray}\textbar\enskip}{0cm}{} % Formats subsubsection titles
+
+% Formats captions
+\DeclareCaptionFont{SIT-red}{\color{SIT-red}}
+\captionsetup{labelfont={SIT-red,bf}}
+
+ % Changes font to mlmodern
+\usepackage{mlmodern}
+
+% Removes indent when starting a new paragraph
+\setlength\parindent{0pt}
+
+% Limits the ToC to sections and subsections (no subsubsec.)
+\setcounter{tocdepth}{2}
