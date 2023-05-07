@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex main"] 1683460605 "main.aux" "main.bbl" "main" 1683460982 0
+["bibtex main"] 1683461837 "main.aux" "main.bbl" "main" 1683461838 0
   "./General/References.bib" 1683437734 152 1b1402f30f81b99045b4e96fb6b13940 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1642711412 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1683460982 6026 bfe6419f86b5d28e75fcadedaa8abdfb "pdflatex"
+  "main.aux" 1683461838 6026 6bb19d65358e9f242fa53b97c1dcc195 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1683460981 "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" "main.pdf" "main" 1683460982 0
+["pdflatex"] 1683461837 "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" "main.pdf" "main" 1683461838 0
   "/home/robert/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1683423898 2727063 3aedcdd3b2820d5f60799e7bd5db3333 ""
-  "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" 1683437734 869 2c9bdf5253c5508b903af1d00956ce3e ""
+  "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" 1683461836 883 c997d0c489e7cde50198df0bd63213d4 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1202520719 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -233,6 +233,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty" 1601326656 325 f9f16d12354225b7dd52a3321f085955 ""
   "/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575674187 9715 b051d5b493d9fe5f4bc251462d039e5f ""
+  "/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty" 1324344192 22913 a27d7908fc6f0385466454a966a316eb ""
   "/usr/share/texlive/texmf-dist/tex/latex/tabu/tabu.sty" 1647619231 116771 01edaf927f7dacae14db8320ee0e9351 ""
   "/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty" 1571259403 48596 2b6a95da931c07a430b1a61904aaa42d ""
   "/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty" 1571259403 16867 48b0a882b3e08147593c7c0476d9c2e2 ""
@@ -246,19 +247,19 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1605910342 4902 efb3d66683a2da2a232f71e3a571a899 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1642711416 40136 b05acc85e8425979e52682d98a2bcacf ""
   "/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1674153832 5132490 3b5b73be92ec3d6f4a45957a9c195358 ""
-  "Chapters/0. Frontpage.tex" 1683460604 545 03695c3fbe7b5739e9025ff8a2422812 ""
+  "Chapters/0. Frontpage.tex" 1683461553 559 253858eebf04ead9ff7548c7dcb0776b ""
   "Chapters/1. Introduction.tex" 1683437734 6134 94486a22189daeb35023e791204d085d ""
   "Chapters/A. Appendix A.tex" 1683437734 177 92969b2293f614e2e5aa64f360a41277 ""
   "Figures/Logos/nbodynice.jpg" 1683423554 627814 ae2ba65a451ab50dfc301057d822a10a ""
   "Figures/Logos/stevenslogo.png" 1683423476 111554 03b5a61cefe63af3215f1b5c5c602b96 ""
   "Figures/flowchart.tex" 1683437734 3847 ff18758dc231242b501efcfb10ff86a3 ""
-  "General/Preamble.tex" 1683437734 3584 9ae1fb0fb19e385b2dd79baaa40af2ce ""
-  "General/Settings.tex" 1683460981 3181 6409e59616b03d13b1029f1034447784 ""
-  "main.aux" 1683460982 6026 bfe6419f86b5d28e75fcadedaa8abdfb "pdflatex"
-  "main.bbl" 1683460605 169 b0404d4fdd2dcb7602835a0315dfddc7 "bibtex main"
-  "main.out" 1683460982 1505 45c99cd8575a5a2dc136eb0fd525c913 "pdflatex"
-  "main.tex" 1683437734 869 2c9bdf5253c5508b903af1d00956ce3e ""
-  "main.toc" 1683460982 945 ec6dd4173ba4383297cdd4ef6cd25cbe "pdflatex"
+  "General/Preamble.tex" 1683461800 3607 e3250e2a2fbced4a12e1b587b5ee4323 ""
+  "General/Settings.tex" 1683461495 3181 6409e59616b03d13b1029f1034447784 ""
+  "main.aux" 1683461838 6026 6bb19d65358e9f242fa53b97c1dcc195 "pdflatex"
+  "main.bbl" 1683461837 169 b0404d4fdd2dcb7602835a0315dfddc7 "bibtex main"
+  "main.out" 1683461838 1505 45c99cd8575a5a2dc136eb0fd525c913 "pdflatex"
+  "main.tex" 1683461836 883 c997d0c489e7cde50198df0bd63213d4 ""
+  "main.toc" 1683461838 945 377f400aac5b51dcec27c12b97885921 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
