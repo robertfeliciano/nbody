@@ -9,7 +9,7 @@ def run(n: int) -> float:
     Runs the nbody simulation with n bodies for 10 iterations.
     Returns the average time a time iteration took to compute.
     '''
-    output = subprocess.run(f"./bin/nbody {n} 10", shell=True, capture_output=True).stdout.decode('utf-8')
+    output = subprocess.run(f"../bin/nbody {n} 10", shell=True, capture_output=True).stdout.decode('utf-8')
     times = np.array([float(t) for t in re.findall(r'\d+\.\d\d', output)])
     avg = round(np.average(times), 3)
     # progress indicator 
@@ -42,16 +42,19 @@ def time_cpu(version: str) -> list[float]:
     return [avg1k, avg10k, avg50k, avg100k]
 
 def main() -> None:
-    cuda_versions = ['cuda', 'basic']
-    df = pd.DataFrame(columns=cuda_versions, 
-                      index=['1K', '10K', '50K', '100K', '300K', '1M', '3M'])
-    for v in cuda_versions:
-        df[v] = time_cuda(v)
-        print(df.head())
-        df.to_csv('cuda_backup.csv', index=False)
+    # cuda_versions = ['cuda', 'basic']
+    # df = pd.DataFrame(columns=cuda_versions, 
+    #                   index=['1K', '10K', '50K', '100K', '300K', '1M', '3M'])
+    # for v in cuda_versions:
+    #     df[v] = time_cuda(v)
+    #     print(df.head())
+    #     df.to_csv('cuda_backup.csv', index=False)
 
-    fig = df.plot(figsize=(10,10)).get_figure()
-    fig.savefig('gpu_cmp.pdf')
+    # df.rename(columns={'cuda':'optimized', 'basic':'naive'}, inplace=True)
+    # fig = df.plot(figsize=(10,10))
+    # fig.set_xlabel("Number of Bodies")
+    # fig.set_ylabel("Time Taken (ms)")
+    # fig.savefig('../newgraphs/gpu_cmp.pdf')
 
     cpu_versions = ['omp', 'default']
     df = pd.DataFrame(columns=cpu_versions, 
@@ -61,8 +64,13 @@ def main() -> None:
         print(df.head())
         df.to_csv('cpu_backup.csv', index=False)
 
-    fig = df.plot(figsize=(10,10)).get_figure()
-    fig.savefig('cpu_cmp.pdf')
+    df.rename(columns={'omp':'OpenMP', 'default':'naive'}, inplace=True)
+
+    fig = df.plot(figsize=(10,10))
+    fig.set_xlabel("Number of Bodies")
+    fig.set_ylabel("Time Taken (ms)")
+    fig = fig.get_figure()
+    fig.savefig('../newgraphs/cpu_cmp.pdf')
 
 
 if __name__ == "__main__":
