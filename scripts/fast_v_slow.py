@@ -25,24 +25,22 @@ def time(version: str) -> list[float]:
     avg10k = run(10000)
     avg50k = run(50000)
     avg100k = run(100000)
-    avg300k = run(300000)
-    avg1M = run(1000000)
-    avg3M = run(3000000)
-    return [avg1k, avg10k, avg50k, avg100k, avg300k, avg1M, avg3M]
+    return [avg1k, avg10k, avg50k, avg100k]
 
 def main() -> None:
-    versions = ['cuda', 'no_ftz']
+    versions = ['cuda', 'default']
     df = pd.DataFrame(columns=versions, 
-                      index=['1K', '10K', '50K', '100K', '300K', '1M', '3M'])
-                    # index=['1K', '10K', '50K'])
+                      index=['1K', '10K', '50K', '100K'])
+    
     for v in versions:
         df[v] = time(v)
         # i just need to see some progress indicator lol
         print(df.head())
-        df.to_csv('../data/ftz_backup.csv', index=False)
+        df.to_csv('../data/fastslow_backup.csv', index=False)
 
+    df.rename(columns={'cuda':'cuda', 'default':'sequential cpu'}, inplace=True)
     fig = df.plot(figsize=(10,10)).get_figure()
-    fig.savefig('../graphs/ftz_graph.pdf')
+    fig.savefig('../graphs/fastslow_graph.pdf')
 
 
 if __name__ == "__main__":
