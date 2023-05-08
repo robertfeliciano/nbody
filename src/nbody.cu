@@ -75,7 +75,6 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
                 float dy = others[j].y - p[b].y;
                 float dz = others[j].z - p[b].z;
                 float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
-                
                 float denom = rsqrtf(d);
                 float denom_cubed = denom * denom * denom;
 
@@ -106,9 +105,9 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
         v[b].y += dt * G * fy;
         v[b].z += dt * G * fz;
 
-        // p[b].x += v[b].x*dt;
-        // p[b].y += v[b].y*dt;
-        // p[b].z += v[b].z*dt;
+        p[b].x += v[b].x*dt;
+        p[b].y += v[b].y*dt;
+        p[b].z += v[b].z*dt;
     }
 }
 
@@ -146,15 +145,17 @@ int main(int argc, char* argv[]){
 
         // call kernel
         simulate_interaction<<<dimGrid, BLOCKSZ>>>(d_bodies.p, d_bodies.v, dt, n);
+        
+        auto end = timer::now();
+
         cudaMemcpy(tmp, d_tmp, bytes, cudaMemcpyDeviceToHost);
 
-        #pragma omp simd
-        for (int b = 0; b < n; b++){
-            bodies.p[b].x += bodies.v[b].x*dt;
-            bodies.p[b].y += bodies.v[b].y*dt;
-            bodies.p[b].z += bodies.v[b].z*dt;
-        }
-        auto end = timer::now();
+        // #pragma omp simd
+        // for (int b = 0; b < n; b++){
+        //     bodies.p[b].x += bodies.v[b].x*dt;
+        //     bodies.p[b].y += bodies.v[b].y*dt;
+        //     bodies.p[b].z += bodies.v[b].z*dt;
+        // }
         auto elapsed = duration_cast<microseconds>(end - start).count();
         float elapsed_ms = static_cast<float>(elapsed) / 1000;
 
