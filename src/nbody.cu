@@ -150,16 +150,10 @@ int main(int argc, char* argv[]){
 
         cudaMemcpy(tmp, d_tmp, bytes, cudaMemcpyDeviceToHost);
 
-        // #pragma omp simd
-        // for (int b = 0; b < n; b++){
-        //     bodies.p[b].x += bodies.v[b].x*dt;
-        //     bodies.p[b].y += bodies.v[b].y*dt;
-        //     bodies.p[b].z += bodies.v[b].z*dt;
-        // }
         auto elapsed = duration_cast<microseconds>(end - start).count();
         float elapsed_ms = static_cast<float>(elapsed) / 1000;
-
-        printf("Iter %d took %.2f milliseconds on the device\n", i, elapsed_ms);
+        if (i > 0)
+            printf("Iter %d took %.2f milliseconds on the device\n", i, elapsed_ms);
     }
 
     free(tmp);

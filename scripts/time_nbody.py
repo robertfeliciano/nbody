@@ -9,7 +9,7 @@ def run(n: int) -> float:
     Runs the nbody simulation with n bodies for 10 iterations.
     Returns the average time a time iteration took to compute.
     '''
-    output = subprocess.run(f"./bin/nbody {n} 10", shell=True, capture_output=True).stdout.decode('utf-8')
+    output = subprocess.run(f"../bin/nbody {n} 10", shell=True, capture_output=True).stdout.decode('utf-8')
     times = np.array([float(t) for t in re.findall(r'\d+\.\d\d', output)])
     avg = round(np.average(times), 3)
     # progress indicator 
@@ -26,10 +26,10 @@ def time(version: str) -> list[float]:
     avg50k = run(50000)
     avg100k = run(100000)
     if version == 'default':
-        return [avg1k, avg10k, avg50k, avg100k, -2.0, -3.0]
+        return [avg1k, avg10k, avg50k, avg100k, np.NaN, np.NaN]
     avg300k = run(300000)
     if version == 'omp':
-        return [avg1k, avg10k, avg50k, avg100k, avg300k, -1.0]
+        return [avg1k, avg10k, avg50k, avg100k, avg300k, np.NaN]
     avg3M = run(3000000)
     return [avg1k, avg10k, avg50k, avg100k, avg300k, avg3M]
     # return [avg1k, avg10k, avg50k]
@@ -43,10 +43,15 @@ def main() -> None:
         df[v] = time(v)
         # i just need to see some progress indicator lol
         print(df.head())
-        df.to_csv('backup.csv', index=False)
+        df.to_csv('../data/big_backup.csv', index=False)
 
-    fig = df.plot(figsize=(20,20)).get_figure()
-    fig.savefig('graph.pdf')
+
+    df.rename(columns={'cuda':'optimzed CUDA', 'omp':'OpenMP', 'default':'naive CPU', 'basic':'naive CUDA'}, inplace=True)
+    fig = df.plot(figsize=(10,10))
+    fig.set_xlabel("Number of Bodies")
+    fig.set_ylabel("Time Taken (ms)")
+    fig = fig.get_figure()
+    fig.savefig('../newgraphs/big_graph.pdf')
 
 
 if __name__ == "__main__":

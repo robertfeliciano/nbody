@@ -41,9 +41,13 @@ def main() -> None:
         print(df.head())
         df.to_csv('../data/ftz_backup.csv', index=False)
 
-    fig = df.plot(figsize=(10,10)).get_figure()
-    fig.savefig('../graphs/ftz_graph.pdf')
-
+    
+    df.rename(columns={'cuda':'FTZ', 'no_ftz':'No FTZ'}, inplace=True)
+    fig = df.plot(figsize=(10,10))
+    fig.set_xlabel("Number of Bodies")
+    fig.set_ylabel("Time Taken (ms)")
+    fig = fig.get_figure()
+    fig.savefig('../newgraphs/test_ftz.pdf')
 
 if __name__ == "__main__":
     main()

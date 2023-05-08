@@ -38,9 +38,12 @@ def main() -> None:
         print(df.head())
         df.to_csv('../data/fastslow_backup.csv', index=False)
 
-    df.rename(columns={'cuda':'cuda', 'default':'sequential cpu'}, inplace=True)
-    fig = df.plot(figsize=(10,10)).get_figure()
-    fig.savefig('../graphs/fastslow_graph.pdf')
+    df.rename(columns={'cuda':'optimzed CUDA', 'default':'naive CPU'}, inplace=True)
+    fig = df.plot(figsize=(10,10))
+    fig.set_xlabel("Number of Bodies")
+    fig.set_ylabel("Time Taken (ms)")
+    fig = fig.get_figure()
+    fig.savefig('../newgraphs/fastslow_cmp.pdf')
 
 
 if __name__ == "__main__":
