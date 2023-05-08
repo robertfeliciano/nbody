@@ -101,6 +101,10 @@ __global__ void simulate_interaction(float4* p, float4* v, float dt, int n){
         v[b].x += dt * G * fx;
         v[b].y += dt * G * fy;
         v[b].z += dt * G * fz;
+
+        p[b].x += v[b].x*dt;
+        p[b].y += v[b].y*dt;
+        p[b].z += v[b].z*dt;
     }
 }
 
@@ -146,9 +150,9 @@ inline void host_interaction(float4* p, float4* v, float dt, int n){
         v[i].y += dt * G * fy;
         v[i].z += dt * G * fz;
 
-        // p[i].x += v[i].x*dt;
-        // p[i].y += v[i].y*dt;
-        // p[i].z += v[i].z*dt;
+        p[i].x += v[i].x*dt;
+        p[i].y += v[i].y*dt;
+        p[i].z += v[i].z*dt;
     }
 }
 #endif
@@ -182,12 +186,12 @@ int main(int argc, char* argv[]){
 
         // note: OpenMP SIMD is only noticable when compiled with -O1 or -O2
         // because -O3 tries to auto-vectorize loops like these
-        #pragma omp simd
-        for (int i = 0; i < n; i++){
-            h_bodies.p[i].x += h_bodies.v[i].x*dt;
-            h_bodies.p[i].y += h_bodies.v[i].y*dt;
-            h_bodies.p[i].z += h_bodies.v[i].z*dt;
-        }
+        // #pragma omp simd
+        // for (int i = 0; i < n; i++){
+        //     h_bodies.p[i].x += h_bodies.v[i].x*dt;
+        //     h_bodies.p[i].y += h_bodies.v[i].y*dt;
+        //     h_bodies.p[i].z += h_bodies.v[i].z*dt;
+        // }
     }        
 
     #endif
@@ -213,12 +217,12 @@ int main(int argc, char* argv[]){
         simulate_interaction<<<dimGrid, BLOCKSZ>>>(d_bodies.p, d_bodies.v, dt, n);
         cudaMemcpy(tmp, d_tmp, bytes, cudaMemcpyDeviceToHost);
 
-        #pragma omp simd
-        for (int b = 0; b < n; b++){
-            bodies.p[b].x += bodies.v[b].x*dt;
-            bodies.p[b].y += bodies.v[b].y*dt;
-            bodies.p[b].z += bodies.v[b].z*dt;
-        }
+        // #pragma omp simd
+        // for (int b = 0; b < n; b++){
+        //     bodies.p[b].x += bodies.v[b].x*dt;
+        //     bodies.p[b].y += bodies.v[b].y*dt;
+        //     bodies.p[b].z += bodies.v[b].z*dt;
+        // }
 
         #ifndef CHECK
         auto end = timer::now();

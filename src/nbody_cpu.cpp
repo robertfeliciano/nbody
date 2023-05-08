@@ -91,9 +91,13 @@ inline void simulate_interaction(Body* b, int n){
         fz -= m_c * dz * denom_cubed;
 
 
-        b[i].vx += dt*fx;
-        b[i].vy += dt*fy;
-        b[i].vz += dt*fz;
+        b[i].vx += dt*fx*G;
+        b[i].vy += dt*fy*G;
+        b[i].vz += dt*fz*G;
+
+        b[i].x += dt * b[i].vx;
+        b[i].y += dt * b[i].vy;
+        b[i].z += dt * b[i].vz;
     }
 }
 
@@ -113,14 +117,6 @@ int main(int argc, char* argv[]){
 
         simulate_interaction(bodies, n);
 
-        // note: OpenMP SIMD is only noticable when compiled with -O1 or -O2
-        // as -O3 tries to auto-vectorize loops like these
-        #pragma omp simd
-        for (int i = 0; i < n; i++){
-            bodies[i].x += bodies[i].vx*dt;
-            bodies[i].y += bodies[i].vy*dt;
-            bodies[i].z += bodies[i].vz*dt;
-        }
         auto end = timer::now();
         auto elapsed = duration_cast<microseconds>(end - start).count();
         float elapsed_ms = static_cast<float>(elapsed) / 1000;
