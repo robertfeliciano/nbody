@@ -1,14 +1,9 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {section}{\numberline {2}Objectives}{1}{section.2}%
-\contentsline {section}{\numberline {3}Equipment Required}{1}{section.3}%
-\contentsline {section}{\numberline {4}Methodology}{1}{section.4}%
-\contentsline {section}{\numberline {5}Procedure}{2}{section.5}%
-\contentsline {section}{\numberline {6}Calculations and Analysis}{3}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Sub Section Heading}{3}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Sub Section Heading}{3}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Results}{4}{section.7}%
-\contentsline {section}{\numberline {8}Discussion}{4}{section.8}%
-\contentsline {section}{\numberline {9}Limitations}{5}{section.9}%
-\contentsline {section}{\numberline {10}References}{6}{section.10}%
-\contentsline {section}{\numberline {A}Appendix A title}{7}{appendix.A}%
+\contentsline {section}{\numberline {2}Computer Specifications}{1}{section.2}%
+\contentsline {section}{\numberline {3}Suitability for GPU Acceleration}{2}{section.3}%
+\contentsline {section}{\numberline {4}CPU Implementations}{2}{section.4}%
+\contentsline {section}{\numberline {5}GPU Implementations}{2}{section.5}%
+\contentsline {section}{\numberline {6}Time Comparisons}{2}{section.6}%
+\contentsline {section}{\numberline {7}Discussion}{2}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{2}{section.8}%
 \contentsfinish 

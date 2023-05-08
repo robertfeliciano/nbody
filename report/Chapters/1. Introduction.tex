@@ -2,227 +2,65 @@
 % Introduction
 % ---------------------------------
 \section{Introduction}
-Write a brief introduction. Explain what this experiment is for and why researchers use it. 
-
-
-% ---------------------------------
-% Objectives
-% ---------------------------------
-\section{Objectives} \label{section: introduction}
-Write your experiment objectives here. You can use bulleted points if you like.
-
-\begin{itemize}
-    \item Objective 1
-    \item Objective 2
-\end{itemize}
-
-% ---------------------------------
-% Equipment Required
-% ---------------------------------
-\section{Equipment Required} 
-Write the pieces of equipment required for the experiment.
-Equipment 1, Equipment 2, Equipment 3, and Equipment 4.
-
-% ---------------------------------
-% Methodology
-% ---------------------------------
-\section{Methodology}
-Write down the step-by-step methodology. You can add a bulleted list or flowchart (\cref{fig:flowchart}).
-
-\begin{itemize}
-    \item Item 1
-    \item Item 2
-    \begin{itemize}
-        \item subitem 1
-        \begin{itemize}
-            \item subsubitem 1
-            \item subsubitem 2
-        \end{itemize}
-    \end{itemize}
-    \item Item 3
-\end{itemize}
-
-% Add flowchart
-\input{Figures/flowchart}
-
-% ---------------------------------
-% Procedure
-% ---------------------------------
-\section{Procedure}
-In this section, you need to explain how you conducted the experiment. This could be done with figures (example \cref{fig: three images}) or observation tables (example \cref{table: style 1}). The figure and table number follows the following format \texttt{<section number>.<figure number>}.
-
-You can also add citations of past work or experiments conducted by scientists \cite{kottwitz2011}.
-
-% Table with style 1
-\begin{table}[ht]
-\rowcolors{2}{SIT-red!10}{white}
-\centering
-\caption{A table without vertical lines.}
-\begin{tabular}[t]{ccccc}
-\toprule
-\color{SIT-red}\textbf{Column 1}&\color{SIT-red}\textbf{Column 2}&\color{SIT-red}\textbf{Column 3}&\color{SIT-red}\textbf{Column 4}&\color{SIT-red}\textbf{Column 5}\\
-\midrule
-Entry 1&1&2&3&4\\
-Entry 2&1&2&3&4\\
-Entry 3&1&2&3&4\\
-Entry 4&1&2&3&4\\
-\bottomrule
-\end{tabular}
-\label{table: style 1}
-\end{table}
-
-% Figure with three images
-\begin{figure}[H]
-     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{example-image-a}
-         \caption{image a}
-         \label{fig: style 1 image a}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{example-image-b}
-         \caption{image b}
-         \label{fig: style 1 image b}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{example-image-c}
-         \caption{image c}
-         \label{fig: style 1 image c}
-     \end{subfigure}
-        \caption{Three images}
-        \label{fig: three images}
-\end{figure}
-
-% ---------------------------------
-% Calculations and Analysis
-% ---------------------------------
-
-\section{Calculations and Analysis}
-
-This section explains the data analysis or exploratory analysis as per the experimental procedure.  
-
-
-% Sub Section Heading
-\subsection{Sub Section Heading}
-This is a subsection under the main section.
-
-\begin{enumerate}
-    \item Item 1
-    \item Item 2
-    \begin{enumerate}
-        \item subitem 1
-        \begin{enumerate}
-            \item subsubitem 1
-            \item subsubitem 2
-        \end{enumerate}
-    \end{enumerate}
-    \item Item 3
-\end{enumerate}
-
-\subsection{Sub Section Heading}
-This is another subsection under the section.\\
-
-Here few equation styles that you can use.\\
-
-% Equation
-One-line \cref{Eq1}.
+For my project, I implemented a parallel brute force N-Body Simulation which runs in $O(n^2)$ time.
+The brute force approach is often times called the "all-pairs N-body simulation" as it simulates
+the interaction between all the pairs of bodies in the simulation, while other methods,
+such as the Barnes-Hut simulation, achieve better performance by approximating the interaction
+by reducing the number of interactions based on the distance between two bodies.\\
+\indent N-Body Simulations can be used to model the interaction between many different things, such as
+planets, galaxies, and particles. My simulation models the interaction between bodies exerting
+a gravitational force on one another, with a very large and dense mass being in the middle that also
+exerts a force on every body in the simulation. \\
+\indent The acceleration of a body due to the gravitational force exerted on it by another body 
+can be modeled by the following equation: 
 \begin{equation}
-e = \lim_{n\to\infty} \left(1+\frac{1}{n}\right)^n
-\label{Eq1}
-\end{equation} 
-
-Aligned \cref{Eq2}.
-\begin{align}
-	x^2 -25 &= 0 \nonumber \\
-	x^2 &= 25 \nonumber \\
-	\therefore \Aboxed{x &= 5}
- \label{Eq2}
-\end{align}
-
-Multi-line \cref{Eq3}.
-\begin{multline}
-	f(x) = 4xy^2 + 3x^3 - 2xy + 25x^3y^3 + 3xy - 4x^6y^6 + 3xy^2 - 2y^3\\ + a^3b^3c^4 + 3x^3 - 2xy + 25x^3y^3 + 3xy\\ - 4x^6y^6 + 3xy^2 - 2y^3 + a^3b^3c^4
-\label{Eq3}
-\end{multline}
-
-
-
+    a_i \approx G \cdot \sum\limits_{j=1}{^N}\frac{m_j \cdot \vec{r_{ij}}}{(\left\lVert\vec{r_{ij}}\right\rVert^2 + \epsilon^2)^\frac{3}{2}} \
+\end{equation}
+The $\epsilon$ is known as a softening factor and is set to $1 \times 10^{-8}$ in order to prevent 
+division by zero and not have particles collide, but rather pass through each other.
+My simulation uses this equation to update the velocity of each particle over a small time-step $dt = 0.01$
+by multiplying the result $a_i$ by the time-step $dt$. \\ 
+   
 % ---------------------------------
-% Results
+% Computer Specs
 % ---------------------------------
-\section{Results}
-Here explain the results obtained from the experimental analysis.
+\section{Computer Specifications} 
+The simulation was run locally on my PC using WSL2. The specifications are the following:
+\begin{itemize}
+    \item CPU: AMD Ryzen 5 5600X, 6-core, 12-Thread
+    \item GPU: NVIDIA - GeForce RTX 3070 Ti
+\end{itemize}
+These specifications are important as different CPUs will experience different speed-ups
+from OpenMP depending on how many threads are available. Along with that, different GPUs
+will also experience different results based on factors such as their streaming multiprocessor
+count.
 
-Use table (\cref{table: style 2}) or figure (\cref{fig: style 2 image a} - \cref{fig: style 2 image c}) to explain the results. 
+\section{Suitability for GPU Acceleration}
+Since the interaction between one pair of bodies is completely independent from the 
+interaction between another pair of bodies, this problem is embarrassingly parallel. 
+The entire computation can be parallelized on the GPU. 
+My implementation has the calculation of the force and the updating of every body's velocity vector 
+done on the GPU and the updating of the position of each 
+body is done in parallel on the CPU using OpenMP's SIMD directive once the velocity vector is completely
+updated for that time-step. With this impleentation, we achieve 100\% parallelism for simulating
+the interaction between all N bodies.
 
-% Table with style 2
-\begin{table}[ht]
-\rowcolors{2}{gray!10}{white}
-\centering
-\caption{A table without vertical lines.}
-\begin{tabular}[t]{ccccc}
-\toprule
-\textbf{Column 1}&\textbf{Column 2}&\textbf{Column 3}&\textbf{Column 4}&\textbf{Column 5}\\
-\midrule
-Entry 1&1&2&3&4\\
-Entry 2&1&2&3&4\\
-Entry 3&1&2&3&4\\
-Entry 4&1&2&3&4\\
-\bottomrule
-\end{tabular}
-\label{table: style 2}
-\end{table}
+\section{CPU Implementations}
+ah ah something cpu and then openmp and then yeah
+explain optimizations from compiler and from me yeah yup
 
-% Three different figures
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.3\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{example-image-a}
-  \captionof{figure}{image a}
-  \label{fig: style 2 image a}
-\end{minipage}
-\hfill
-\begin{minipage}{0.3\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{example-image-b}
-  \captionof{figure}{image b}
-  \label{fig: style 2 image b}
-\end{minipage}
-\hfill
-\begin{minipage}{0.3\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{example-image-c}
-  \captionof{figure}{image c}
-  \label{fig: style 2 image c}
-\end{minipage}
-\end{figure}
+\section{GPU Implementations}
+ah ah something direct port and then optimized yeah
+explain flush denorms and stuff 
 
-% ---------------------------------
-% Discussion
-% ---------------------------------
+\section{Time Comparisons}
+yeah a lot of graphs and tables and stuff yeah and yeah
+explain the times and be like woahhhhhh thats a big time moment
+
 \section{Discussion}
-Discuss the outcomes here. What surprising finding you have made, and why it is surprising?
+what was cool about this brah?
+what could i do different or add to this and stuff yeah
+any limits bro?
 
-
-% ---------------------------------
-% Limitations
-% ---------------------------------
-\section{Limitations}
-Here you can describe the experiment's limitations. You can list them point-wise.
-
-\begin{enumerate}
-    \item Item 1
-    \item Item 2
-    \begin{enumerate}
-        \item subitem 1  
-        \item subsubitem 1
-        \item sub subitem 2
-    \end{enumerate}
-    \item Item 3
-\end{enumerate}
+\section{Conclusion}
+gpu rules parallelism is great yeah i be balling uh-huh yeah

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 19:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 22:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -517,6 +517,8 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \xmathstrut@dim=\dimen285
 ) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks42
 \pgfutil@tempdima=\dimen286
@@ -858,12 +860,12 @@ LaTeX Info: Redefining \nameref on input line 6.
 \openout4 = `main.out'.
 
  (./Chapters/0. Frontpage.tex
-<Figures/Logos/stevenslogo.png, id=59, 1003.75pt x 1076.02pt>
+<Figures/Logos/stevenslogo.png, id=39, 1003.75pt x 1076.02pt>
 File: Figures/Logos/stevenslogo.png Graphic file (type png)
 <use Figures/Logos/stevenslogo.png>
 Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 9.
 (pdftex.def)             Requested size: 108.71478pt x 116.54008pt.
-<Figures/Logos/nbodynice.jpg, id=61, 1073.00874pt x 602.25pt>
+<Figures/Logos/nbodynice.jpg, id=41, 1073.00874pt x 602.25pt>
 File: Figures/Logos/nbodynice.jpg Graphic file (type jpg)
 <use Figures/Logos/nbodynice.jpg>
 Package pdftex.def Info: Figures/Logos/nbodynice.jpg  used on input line 28.
@@ -878,37 +880,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-{/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Figures/Logos/stevenslogo.png> <./Figures/Logos/nbodynice.jpg>]) (./main.toc
-LaTeX Font Info:    Trying to load font information for OML+mlmm on input line 7.
- (/usr/share/texlive/texmf-dist/tex/latex/mlmodern/omlmlmm.fd
-File: omlmlmm.fd 2021/01/11 v1.0 Font defs for mlmodern
-)
-LaTeX Font Info:    Trying to load font information for OMS+mlmsy on input line 7.
- (/usr/share/texlive/texmf-dist/tex/latex/mlmodern/omsmlmsy.fd
-File: omsmlmsy.fd 2021/01/11 v1.0 Font defs for mlmodern
-)
-LaTeX Font Info:    Trying to load font information for OMX+mlmex on input line 7.
- (/usr/share/texlive/texmf-dist/tex/latex/mlmodern/omxmlmex.fd
-File: omxmlmex.fd 2021/01/11 v1.0 Font defs for mlmodern
-)
-LaTeX Font Info:    External font `mlmex10' loaded for size
-(Font)              <10.95> on input line 7.
-LaTeX Font Info:    External font `mlmex10' loaded for size
-(Font)              <8> on input line 7.
-LaTeX Font Info:    External font `mlmex10' loaded for size
-(Font)              <6> on input line 7.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 7.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 7.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-))
+{/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Figures/Logos/stevenslogo.png> <./Figures/Logos/nbodynice.jpg>]) (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
@@ -925,9 +897,42 @@ LaTeX Font Warning: Font shape `OMS/mlmss/bx/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textbar' on input line 4.
 
+LaTeX Font Info:    Trying to load font information for OML+mlmm on input line 5.
+(/usr/share/texlive/texmf-dist/tex/latex/mlmodern/omlmlmm.fd
+File: omlmlmm.fd 2021/01/11 v1.0 Font defs for mlmodern
+)
+LaTeX Font Info:    Trying to load font information for OMS+mlmsy on input line 5.
+ (/usr/share/texlive/texmf-dist/tex/latex/mlmodern/omsmlmsy.fd
+File: omsmlmsy.fd 2021/01/11 v1.0 Font defs for mlmodern
+)
+LaTeX Font Info:    Trying to load font information for OMX+mlmex on input line 5.
+ (/usr/share/texlive/texmf-dist/tex/latex/mlmodern/omxmlmex.fd
+File: omxmlmex.fd 2021/01/11 v1.0 Font defs for mlmodern
+)
 LaTeX Font Info:    External font `mlmex10' loaded for size
-(Font)              <5> on input line 15.
-(./Figures/flowchart.tex)
+(Font)              <10.95> on input line 5.
+LaTeX Font Info:    External font `mlmex10' loaded for size
+(Font)              <8> on input line 5.
+LaTeX Font Info:    External font `mlmex10' loaded for size
+(Font)              <6> on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+Underfull \hbox (badness 10000) in paragraph at lines 18--23
+
+ []
+
+LaTeX Font Info:    External font `mlmex10' loaded for size
+(Font)              <5> on input line 30.
 File: Figures/Logos/stevenslogo.png Graphic file (type png)
 <use Figures/Logos/stevenslogo.png>
 Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 47.
@@ -936,100 +941,31 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 <to be read again> 
                    \relax 
 l.47 
-      [1]
-LaTeX Font Info:    Trying to load font information for OT1+mlmtt on input line 52.
- (/usr/share/texlive/texmf-dist/tex/latex/mlmodern/ot1mlmtt.fd
-File: ot1mlmtt.fd 2021/01/11 v1.0 Font defs for mlmodern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `mlmtt' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-<example-image-a.pdf, id=100, 321.2pt x 240.9pt>
-File: example-image-a.pdf Graphic file (type pdf)
-<use example-image-a.pdf>
-Package pdftex.def Info: example-image-a.pdf  used on input line 79.
-(pdftex.def)             Requested size: 135.89174pt x 101.91982pt.
-<example-image-b.pdf, id=101, 321.2pt x 240.9pt>
-File: example-image-b.pdf Graphic file (type pdf)
-<use example-image-b.pdf>
-Package pdftex.def Info: example-image-b.pdf  used on input line 86.
-(pdftex.def)             Requested size: 135.89174pt x 101.91982pt.
-<example-image-c.pdf, id=102, 321.2pt x 240.9pt>
-File: example-image-c.pdf Graphic file (type pdf)
-<use example-image-c.pdf>
-Package pdftex.def Info: example-image-c.pdf  used on input line 93.
-(pdftex.def)             Requested size: 135.89174pt x 101.91982pt.
-File: Figures/Logos/stevenslogo.png Graphic file (type png)
-<use Figures/Logos/stevenslogo.png>
-Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 100.
-(pdftex.def)             Requested size: 18.65485pt x 20.0pt.
- [2]
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
-
- []
-
-File: Figures/Logos/stevenslogo.png Graphic file (type png)
-<use Figures/Logos/stevenslogo.png>
-Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 145.
-(pdftex.def)             Requested size: 18.65485pt x 20.0pt.
-[3 </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf> </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf> </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf>]
-File: example-image-a.pdf Graphic file (type pdf)
-<use example-image-a.pdf>
-Package pdftex.def Info: example-image-a.pdf  used on input line 186.
-(pdftex.def)             Requested size: 135.89174pt x 101.91982pt.
-File: example-image-b.pdf Graphic file (type pdf)
-<use example-image-b.pdf>
-Package pdftex.def Info: example-image-b.pdf  used on input line 193.
-(pdftex.def)             Requested size: 135.89174pt x 101.91982pt.
-File: example-image-c.pdf Graphic file (type pdf)
-<use example-image-c.pdf>
-Package pdftex.def Info: example-image-c.pdf  used on input line 200.
-(pdftex.def)             Requested size: 135.89174pt x 101.91982pt.
-File: Figures/Logos/stevenslogo.png Graphic file (type png)
-<use Figures/Logos/stevenslogo.png>
-Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 220.
-(pdftex.def)             Requested size: 18.65485pt x 20.0pt.
- [4])
+      [1])
 File: Figures/Logos/stevenslogo.png Graphic file (type png)
 <use Figures/Logos/stevenslogo.png>
 Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 20.
 (pdftex.def)             Requested size: 18.65485pt x 20.0pt.
- [5] (./main.bbl)
-File: Figures/Logos/stevenslogo.png Graphic file (type png)
-<use Figures/Logos/stevenslogo.png>
-Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 29.
-(pdftex.def)             Requested size: 18.65485pt x 20.0pt.
- [6] (./Chapters/A. Appendix A.tex)
-File: Figures/Logos/stevenslogo.png Graphic file (type png)
-<use Figures/Logos/stevenslogo.png>
-Package pdftex.def Info: Figures/Logos/stevenslogo.png  used on input line 35.
-(pdftex.def)             Requested size: 18.65485pt x 20.0pt.
- [7] (./main.aux)
+ [2] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 45C99CD8575A5A2DC136EB0FD525C913;1505.
+(rerunfilecheck)             Checksum: 8D4AC0E4F5A9F13AECD4658E3710D08D;1070.
  ) 
 Here is how much of TeX's memory you used:
- 29830 strings out of 478862
- 552783 string characters out of 5858946
- 966755 words of memory out of 6000000
- 46773 multiletter control sequences out of 15000+600000
- 462598 words of font info for 101 fonts, out of 8000000 for 9000
+ 29490 strings out of 478862
+ 546573 string characters out of 5858946
+ 953731 words of memory out of 6000000
+ 46493 multiletter control sequences out of 15000+600000
+ 442830 words of font info for 87 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 89i,16n,86p,556b,947s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (9 pages, 923026 bytes).
+ 89i,15n,86p,556b,696s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (4 pages, 879195 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 207 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 35470 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 135 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 12 named destinations out of 1000 (max. 500000)
+ 22615 words of extra memory for PDF output out of 24883 (max. 10000000)
 

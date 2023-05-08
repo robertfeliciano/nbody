@@ -901,6 +901,17 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
@@ -1249,6 +1260,12 @@ INPUT ./main.toc
 INPUT main.toc
 INPUT main.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmbx10.tfm
+OUTPUT main.toc
+INPUT ./Chapters/1. Introduction.tex
+INPUT Chapters/1. Introduction.tex
+INPUT ./Chapters/1. Introduction.tex
+INPUT Chapters/1. Introduction.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmr8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmr6.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/mlmodern/omlmlmm.fd
@@ -1292,107 +1309,15 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT main.toc
-INPUT ./Chapters/1. Introduction.tex
-INPUT Chapters/1. Introduction.tex
-INPUT ./Chapters/1. Introduction.tex
-INPUT Chapters/1. Introduction.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmr5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/mlmmi5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/mlmsy5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT ./Figures/flowchart.tex
-INPUT ./Figures/flowchart.tex
-INPUT ./Figures/flowchart.tex
-INPUT Figures/flowchart.tex
-INPUT ./Figures/flowchart.tex
-INPUT ./Figures/flowchart.tex
-INPUT Figures/flowchart.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmbx12.tfm
 INPUT ./Figures/Logos/stevenslogo.png
 INPUT ./Figures/Logos/stevenslogo.png
 INPUT Figures/Logos/stevenslogo.png
 INPUT ./Figures/Logos/stevenslogo.png
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mlmodern/ot1mlmtt.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mlmodern/ot1mlmtt.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mlmodern/ot1mlmtt.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mlmodern/ot1mlmtt.fd
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmtt10.tfm
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmr10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmbx10.tfm
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmss12.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmssbx10.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT /usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./main.bbl
-INPUT main.bbl
-INPUT ./main.bbl
-INPUT main.bbl
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mlmodern/rm-mlmri10.tfm
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT Figures/Logos/stevenslogo.png
-INPUT ./Figures/Logos/stevenslogo.png
-INPUT ./Chapters/A. Appendix A.tex
-INPUT Chapters/A. Appendix A.tex
-INPUT ./Chapters/A. Appendix A.tex
-INPUT Chapters/A. Appendix A.tex
 INPUT ./Figures/Logos/stevenslogo.png
 INPUT ./Figures/Logos/stevenslogo.png
 INPUT Figures/Logos/stevenslogo.png
@@ -1400,13 +1325,11 @@ INPUT ./Figures/Logos/stevenslogo.png
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
+INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
-INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
-INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss17.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmex10.pfb
@@ -1414,10 +1337,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr17.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmr8.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmri10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmssbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmsy10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmsy8.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmtt10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
