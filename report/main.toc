@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {6.2}Sub Section Heading}{3}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Results}{4}{section.7}%
 \contentsline {section}{\numberline {8}Discussion}{4}{section.8}%
-\contentsline {section}{\numberline {9}Limitations}{4}{section.9}%
-\contentsline {section}{\numberline {10}References}{5}{section.10}%
-\contentsline {section}{\numberline {A}Appendix A title}{6}{appendix.A}%
+\contentsline {section}{\numberline {9}Limitations}{5}{section.9}%
+\contentsline {section}{\numberline {10}References}{6}{section.10}%
+\contentsline {section}{\numberline {A}Appendix A title}{7}{appendix.A}%
 \contentsfinish 
