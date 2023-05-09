@@ -30,6 +30,7 @@
 
 \usepackage{hyperref} % Allows links and makes references, and the ToC clickable
 \usepackage[noabbrev, capitalise]{cleveref} % Easier referencing using \cref{<label>} instead of \ref{}
+\usepackage{url}
 
 \usepackage{xcolor} % Predefines additional colors and allows user-defined colors
 
@@ -67,5 +68,28 @@
 % \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
 
 \tikzstyle{arrow} = [ultra thick,->,>=stealth]
-
+\usepackage{xcolor}
+\definecolor{main-color}{rgb}{0.6627, 0.7176, 0.7764}
+\definecolor{string-color}{rgb}{0.3333, 0.5254, 0.345}
+\definecolor{key-color}{rgb}{0.8, 0.47, 0.196}
+\lstdefinestyle{cudastyle}
+{
+    language = C++,
+    basicstyle = {\ttfamily \color{main-color}},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    aboveskip=1em,
+    belowskip=1em,
+    lineskip=0.5em,
+    stringstyle = {\color{string-color}},
+    keywordstyle = {\color{key-color}},
+    keywordstyle = [2]{\color{green}},
+    keywordstyle = [3]{\color{orange}},
+    keywordstyle = [4]{\color{teal}},
+    otherkeywords = {__shared__, float4, __syncthreads()},
+    morekeywords = [2]{__shared__},
+    morekeywords = [3]{float4},
+    morekeywords = [4]{__syncthreads()}
+}
 

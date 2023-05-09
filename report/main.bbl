@@ -1,3 +1,26 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Harris_2013}
+Mark Harris.
+\newblock Cuda pro tip: Flush denormals with confidence, Jan 2013.
+\newblock URL:
+  \url{https://developer.nvidia.com/blog/cuda-pro-tip-flush-denormals-confidence/}.
+
+\bibitem{Luitjens_2013}
+Justin Luitjens.
+\newblock Cuda pro tip: Increase performance with vectorized memory access, Dec
+  2013.
+\newblock URL:
+  \url{https://developer.nvidia.com/blog/cuda-pro-tip-increase-performance-with-vectorized-memory-access/}.
+
+\bibitem{talonmies_2015}
+Maxim Milakov.
+\newblock Why are cuda vector types (int4, float4) faster?, Jul 2015.
+\newblock URL: \url{https://stackoverflow.com/a/31449764}.
+
+\bibitem{Vitality_2014}
+Vitality.
+\newblock Efficiency of cuda vector types (float2, float3, float4), Nov 2014.
+\newblock URL: \url{https://stackoverflow.com/a/26702643}.
 
 \end{thebibliography}

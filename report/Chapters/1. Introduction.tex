@@ -14,7 +14,7 @@ exerts a force on every body in the simulation. \\
 \indent The acceleration of a body due to the gravitational force exerted on it by another body 
 can be modeled by the following equation: 
 \begin{equation}
-    a_i \approx G \cdot \sum\limits_{j=1}{^N}\frac{m_j \cdot \vec{r_{ij}}}{(\left\lVert\vec{r_{ij}}\right\rVert^2 + \epsilon^2)^\frac{3}{2}} \
+    a_i \approx G \cdot \sum\limits_{j=1}{^N}\frac{m_j \cdot \vec{r_{ij}}}{(\left\lVert\vec{r_{ij}}\right\rVert^2 + \epsilon^2)^\frac{3}{2}} \label{sec:grav}
 \end{equation}
 The $\epsilon$ is known as a softening factor and is set to $1 \times 10^{-8}$ in order to prevent 
 division by zero and not have particles collide, but rather pass through each other.
@@ -34,11 +34,11 @@ the kernel was called and was ended as soon as the kernel returned (before memor
 device to the host). The time reported is the amount of time each function/kernel call took
 averaged over 10 total calls, and the first CUDA kernel launch is ignored since it always 
 takes significantly longer due to the overhead of setting up the device for the first call.\\
-\indent The simulation, timing scripts, checkers, and \LaTeX code for this report
+\indent Each body's initial position and velocity was initialized randomly using the \verb|<random>| library's 
+\verb|uniform_int_distribution<T>| class functionality.\\
+\indent The simulation, timing scripts, checkers, and \LaTeX  code for this report
 in available on \href{https://github.com/robertfeliciano/nbody}{GitHub}.
-% ---------------------------------
-% Computer Specs
-% ---------------------------------
+
 \section{Hardware Specifications} 
 The simulation was run locally on my Windows 10 PC using WSL2. The specifications are the following:
 \begin{itemize}
@@ -66,7 +66,10 @@ for-loops with one nested in the other:
     language=C++,
     basicstyle=\ttfamily\small,
     keywordstyle=\color{blue}\ttfamily,
-    stringstyle=\color{red}\ttfamily]
+    stringstyle=\color{red}\ttfamily,
+    aboveskip=1em,
+    belowskip=1em,
+    lineskip=0.5em]
     for (int i = 0; i < n; i++){
         float fx = 0.0f, fy = 0.0f, fz = 0.0f;
         for (int j = 0; j < n; j++){
@@ -75,9 +78,59 @@ for-loops with one nested in the other:
 \end{lstlisting}
 This sequential version of the code is very slow. Thanks to OpenMP, 
 we can easily parallelize this by putting a \verb|#pragma omp parallel for schedule(dynamic)| directive above the outer loop. 
-This will spawn some number of threads, depending on how many are availble on the CPU, and 
+This will spawn some number of threads, depending on how many are available on the CPU, and 
 significantly speed up the simulation. By doing this, each thread calculates approximately \verb|N|/\verb|num_threads|
 interactions rather than a single thread calculating every interaction (as it did in the original code). \\
+\indent The rest of the code is trivial and simply implements \hyperref[sec:grav]{equation 1.1}. It computes the 
+Euclidean distance between the each pair of bodies and uses that to find the force of attraction between each pair. 
+Each body's force vector is updated for every other body. 
+\begin{lstlisting}[
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    aboveskip=1em,
+    belowskip=1em,
+    lineskip=0.5em]
+    float dx = b[j].x - b[i].x;
+    float dy = b[j].y - b[i].y;
+    float dz = b[j].z - b[i].z;
+    float d = dx*dx + dy*dy + dz*dz + EPSILON * EPSILON;
+    float denom = 1.0f / sqrtf(d);
+    float denom_cubed = denom * denom * denom;
+
+    float m_j = b[j].m
+
+    fx += m_j * dx * denom_cubed; 
+    fy += m_j * dy * denom_cubed; 
+    fz += m_j * dz * denom_cubed;
+\end{lstlisting}
+Finally, the force of attraction between a body and the large, dense mass in the middle is computed. 
+The code then integrates the force over the small time-step $dt$ 
+and multiplies by the gravitational constant ($G = 6.67 \times 10^{-11}$) to find the acceleration due to the force and adds this 
+to the velocity vector. The velocity vector is then multiplied by $dt$ and used to update the position vector.
+\begin{lstlisting}[
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    aboveskip=1em,
+    belowskip=1em,
+    lineskip=0.5em]
+    // dx, dy, dz, and denom_cubed re-calculated for center mass...
+    m_c = center_obj.m
+    fx -= m_c * dx * denom_cubed; 
+    fy -= m_c * dy * denom_cubed; 
+    fz -= m_c * dz * denom_cubed;
+
+    b[i].vx += dt*fx*G;
+    b[i].vy += dt*fy*G;
+    b[i].vz += dt*fz*G;
+
+    b[i].x += dt * b[i].vx;
+    b[i].y += dt * b[i].vy;
+    b[i].z += dt * b[i].vz;
+\end{lstlisting}
 \indent The code presented in class on May 3rd was very similar to this except I was updating the positions outside of the 
 parallelized loop by using OpenMP's SIMD pragma directive (I simply added \verb|#pragma omp simd| above a 
 loop that iterated over every body and updated each body's position vector). This was because I was experiencing a bug 
@@ -90,7 +143,6 @@ optimize the code as much as possible led to no difference when adding \verb|#pr
 Afer some research, I found out the loop I had originally was being automatically vectorized by the compiler due to the \verb|-O3| 
 flag turning on the \verb|-ftree-vectorize| flag. I believe understanding more about how compilers optimize our 
 code, oftentimes even better than any human could, is crucial to being a good programmer.\\
-\indent Please see \hyperref[sec:timing]{Section 8} for visual representations on the timing experiments.
 
 \section{CUDA Occupancy}
 Before discussing the GPU implementations, I feel it is important to discuss the CUDA Occupancy achieved in them. 
@@ -98,19 +150,39 @@ I use a total of 12,288 bytes of shared memory since each block utilizes a share
 768 (this is the block size) \verb|float4|s, each having a size of 16 bytes. Using the CUDA Occupancy calculator (CITE LEI MAO HERE)
 I was able to determine that my implementation is at 100\% occupancy. \\
 PUT THE STUFF WITH THE GRAPHS FROM THE SHEET HERE AND STUFF HERE \\
-I orginially was using 1024 threads per block, which increased the shared memory size ber block to be 16,384 bytes. However, 
+\indent I originally was using 1024 threads per block, which increased the shared memory size per block to be 16,384 bytes. However, 
 using the occupancy calculator I discovered this was only utilizing 67\% occupancy. After switching from 1024 threads per block
 to 768, I noticed a consistent 1 to 2 millisecond speed up when simulating 30,000 bodies. This speed up scaled appropriately while increasing 
 the number of bodies, sometimes saving about a full second or two when N grew to 1 million bodies.
 
 \section{GPU Implementations}
-ah ah something direct port and then optimized yeah
-explain flush denorms and stuff 
+There were two GPU implementations written for this project: one was a simple port of the inner loop from the CPU code to a CUDA kernel and the other was a more optimized
+algorithm that uses shared memory and loop unrolling. Since the simple version is very similar to the CPU code explained above, we will not discuss it here. \\
+\indent The kernel begins by determining the global thread ID. Then, the code iterates over every block in the grid using a for-loop and, for each block, populates an array in shared memory for every thread in the current block to load in their corresponding body's information:
+\begin{lstlisting}[style = cudastyle]
+    for (int t = 0; t < gridDim.x; t++)
+        __shared__ float4 others[BLOCKSZ];
+        float4 curr = p[t * blockDim.x + threadIdx.x];
+        // load other threads' info into shared memory
+        // the "w field" is used to store the mass
+        others[threadIdx.x] = make_float4(curr.x, curr.y, curr.z, curr.w);
+        __syncthreads();
+\end{lstlisting}
+The code then iterates over the array and calculates the interaction between the body corresponding to the thread running the code (determined by the global thread ID) and every body in the array. This is very similar to the inner loop to the CPU version except for a \verb|#pragma unroll| placed above it so it will not be displayed here. One of the first thoughts I had was to launch another kernel from this one to parallelize this for-loop, but since each thread would be updating the same force I'd have to use atomic operations which would just slow it down anyway. Finally, something similar to the CPU code is done to calculate the ineraction between the current body and the large, dense center mass. The velocity vector is updated by calculating the acceleration from the force vector over $dt$ and similarly the position vector is updated by calculating the displacement from the velocity vector over $dt$.\\
+\indent While I have not tested putting the bodies in constant memory, I believe my implementation may provide similar speeds or even greater since it requires only one kernel launch and uses shared memory. Also, using constant memory wouldn't work once the number of bodies surpasses $N = 2,048$. This is because each body has two \verb|float4|s to store its position, velocity, and mass which totals 32 bytes. Since constant memory is limited to 65,536 kilobytes, our number of bodies is also limited. This method, using a constant amount of shared memory per block ($768\;\text{bodies}\;\times\;16\;\text{bytes/body}\;=\;12,288\;\text{bytes}$) allows us to simulate any number of bodies.
 
-\section{Time Comparisons}
-\label{sec:timing}
-yeah a lot of graphs and tables and stuff yeah and yeah
-explain the times and be like woahhhhhh thats a big time moment
+\section{Other GPU Optimizations}
+\indent There are three more optimizations I used to make the CUDA code as efficient as possible in both versions and they include the \verb|-ftz=True| compiler flag, using \verb|float4|s rather than regular floats, and using a structure of arrays. \\
+\indent The CPU code uses an array of structures to represent the simulation, where each structure represents a body and has float fields for the body's x, y, z position and velocity and a field for its mass. The GPU code uses a single structure of arrays that represents the entire simulation. This structure has two \verb|float4| arrays, where the first array of \verb|float4|s stores each body's x, y, z position and mass, and the other stores each body's velocity. Using the structure of arrays enables greater memory coalescing and uses bandwidth more efficiently.\\
+\indent \verb|Float4|s achieve better performance on the GPU because they utilize vectorized memory accesses \cite{Luitjens_2013}. Experiments have shown that using \verb|float4|s rather than regular floats can increase speeds by up to 25\% \cite{Vitality_2014}. The reason for this is twofold: "multi-word vector memory accesses only require a single instruction to be issued, so the bytes per instruction ratio is higher", and "vector sized transaction request from a warp results in a larger net memory throughput per transaction" \cite{talonmies_2015}. Therefore, by using \verb|float4|s I achieve significant speed-ups on top of using a structure of arrays.\\
+\indent The \verb|-ftz=true| flag flushes what are known as "denormal values" to zero. This is by far the most interesting optimization I learned about while doing research for this project. Denormal values are floating point numbers where the mantissa is normalized and the leading zeros from it are moved into the exponent, resulting in an exponent that is too small and cannot be represented \cite{Harris_2013}. These numbers can slow down computation time significantly, especially for functions like \verb|sqrtf()| and \verb|rsqrtf()|. Since these numbers are so small, flushing them to zero does not affect accuracy at all. Using the \verb|-ftz=true| flag will flush all denormalized numbers to be flushed to zero, which doesn't have a performance impact on adds or multiplies but it does for functions like \verb|rsqrtf()| which map to hardware instructions, sometimes providing a 20\% speed increase \cite{Harris_2013}. I did not see this significant of a speed increase, but saw a small one nonetheless as shown in the figure below. 
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{Figures/graphs/ftz_cmp.pdf}}%
+    \caption{Time Difference when using -ftz=true}
+    \label{fig:swappinggggggg}
+    
+\end{figure}
 
 \section{Discussion}
 what was cool about this brah?

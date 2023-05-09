@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex main"] 1683597926 "main.aux" "main.bbl" "main" 1683598056 0
-  "./General/References.bib" 1683505312 152 1b1402f30f81b99045b4e96fb6b13940 ""
-  "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1642711412 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1683598056 2102 7106174f26d2c3d68f27ec5ce4cc58a8 "pdflatex"
+["bibtex main"] 1683667632 "main.aux" "main.bbl" "main" 1683667633 0
+  "./General/References.bib" 1683681952 934 a9783ab0ac13630eda1ad7a4ea62c1d0 ""
+  "/usr/share/texlive/texmf-dist/bibtex/bst/urlbst/plainurl.bst" 1642713879 33034 6f80d55ce824a32ed5562a5220ff287a ""
+  "main.aux" 1683667633 2743 b155227b52ffaea9d9c1bacaa6d742fe "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1683598055 "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" "main.pdf" "main" 1683598056 0
+["pdflatex"] 1683667632 "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" "main.pdf" "main" 1683667633 0
   "/home/robert/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1683423898 2727063 3aedcdd3b2820d5f60799e7bd5db3333 ""
-  "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" 1683569185 672 21f2b8582c5bb65bc28db46d7a9bd1d8 ""
+  "/home/robert/Stevens/junior/cs/677/nbody/report/main.tex" 1683681952 675 2afc6e481b12584ef5f72b7a3b4dff46 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1202520719 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -245,17 +245,18 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1605910342 4902 efb3d66683a2da2a232f71e3a571a899 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1642711416 40136 b05acc85e8425979e52682d98a2bcacf ""
   "/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1674153832 5132490 3b5b73be92ec3d6f4a45957a9c195358 ""
-  "Chapters/0. Frontpage.tex" 1683505312 559 75b3122230fc27552d2b23b6d3cc18e4 ""
-  "Chapters/1. Introduction.tex" 1683598055 8053 2623d5a51a684468bc1c0ed76c2a5e00 ""
-  "Figures/Logos/nbodynice.jpg" 1683505312 627814 ae2ba65a451ab50dfc301057d822a10a ""
-  "Figures/Logos/stevenslogo.png" 1683505312 111554 03b5a61cefe63af3215f1b5c5c602b96 ""
-  "General/Preamble.tex" 1683597697 3653 3bb355539dcf4debe8cbd10d75f9e15f ""
-  "General/Settings.tex" 1683507431 3079 78c1ff882ba3e662dc6d82e6c23a2ad5 ""
-  "main.aux" 1683598056 2102 7106174f26d2c3d68f27ec5ce4cc58a8 "pdflatex"
-  "main.bbl" 1683597926 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
-  "main.out" 1683598056 1365 34b7a45490e69383df8b77bd52711d3a "pdflatex"
-  "main.tex" 1683569185 672 21f2b8582c5bb65bc28db46d7a9bd1d8 ""
-  "main.toc" 1683598056 759 5206924880e40eea6486a1b519e10c06 "pdflatex"
+  "Chapters/0. Frontpage.tex" 1683681952 559 75b3122230fc27552d2b23b6d3cc18e4 ""
+  "Chapters/1. Introduction.tex" 1683681952 15139 4eb4ea6ac562b89eaf3ee869849db2a5 ""
+  "Figures/Logos/nbodynice.jpg" 1683681952 627814 ae2ba65a451ab50dfc301057d822a10a ""
+  "Figures/Logos/stevenslogo.png" 1683681952 111554 03b5a61cefe63af3215f1b5c5c602b96 ""
+  "Figures/graphs/ftz_cmp.pdf" 1683681952 12606 002a5a9b383f56ec571017c52a3d8dba ""
+  "General/Preamble.tex" 1683681952 4479 8ca6ea6c90a9c1ecea3a23d6234c4322 ""
+  "General/Settings.tex" 1683681952 3079 78c1ff882ba3e662dc6d82e6c23a2ad5 ""
+  "main.aux" 1683667633 2743 b155227b52ffaea9d9c1bacaa6d742fe "pdflatex"
+  "main.bbl" 1683667632 847 2616bc0c3fc6a6ce3e2e98a0b1574a57 "bibtex main"
+  "main.out" 1683667633 1403 838267853196508ac72e1e18f63eff21 "pdflatex"
+  "main.tex" 1683681952 675 2afc6e481b12584ef5f72b7a3b4dff46 ""
+  "main.toc" 1683667633 766 a3e51e64cd931d5d0b15c1ad08147471 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
