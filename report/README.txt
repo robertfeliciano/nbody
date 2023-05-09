@@ -1,3 +1,17 @@
+------------------------------------------------
+Title: IIT Bombay Lab Report LaTeX Format
+Author: Rahul Raoniar
+------------------------------------------------
+
+Thank you for using this template! Read through this file to get started and optimize your template usage.
+
+This template was created initially by Kerr Beeldens. I, Rahul Raoniar, modified this template to fit the requirements of the Indian Institute of Technology Bombay. 
+
+Let me walk through it.
+
+This template consists of three folders and one main.txt file
+
+---------------------
 1. `Chapters`
 
 The `Chapters` folder consists of

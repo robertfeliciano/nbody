@@ -1,2 +1,71 @@
-\section{Appendix A title} \label{section: appendix A title}
-Add additional experimental contents here, like images, tables and equations that supports the experimental outcome.
+\section{Appendix} \label{section: appendix A title}
+\indent The appendix provides the raw data the graphs in the report were made from. I stored them as CSV files and constructed the graphs using the Pandas \verb|DataFrame.plot| method.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        OpenMP & Sequential CPU \\ \hline
+        0.537 & 2.799 \\ \hline
+        44.927 & 286.363 \\ \hline
+        1129.652 & 7265.756 \\ \hline
+        4507.292 & 29280.727 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        Optimized CUDA & Basic CUDA \\ \hline
+        0.0 & 0.043 \\ \hline
+        0.0 & 0.045 \\ \hline
+        0.002 & 0.046 \\ \hline
+        0.002 & 0.053 \\ \hline
+        0.012 & 0.058 \\ \hline
+        0.02 & 0.061 \\ \hline
+        0.02 & 0.06 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        FTZ & No FTZ\\ \hline
+        0.0 & 0.0 \\ \hline
+        0.0 & 0.0 \\ \hline
+        0.001 & 0.001 \\ \hline
+        0.004 & 0.004 \\ \hline
+        0.011 & 0.012 \\ \hline
+        0.02 & 0.02 \\ \hline
+        0.021 & 0.02 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+        CUDA & OpenMP & Basic CUDA & Sequential CPU \\ \hline
+        0.0 & 0.459 & 0.063 & 2.921 \\ \hline
+        0.0 & 45.881 & 0.041 & 293.335 \\ \hline
+        0.0 & 1126.822 & 0.042 & 7277.735 \\ \hline
+        0.007 & 4501.621 & 0.051 & 29046.031 \\ \hline
+        0.012 & 40508.699 & 0.055 & ~ \\ \hline
+        0.02 & ~ & 0.078 & ~ \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        Optimized CUDA & Sequential CPU \\ \hline
+        0.0 & 2.969 \\ \hline
+        0.0 & 285.581 \\ \hline
+        0.001 & 7206.065 \\ \hline
+        0.003 & 29325.559 \\ \hline
+    \end{tabular}
+\end{table}
+

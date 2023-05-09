@@ -143,13 +143,29 @@ optimize the code as much as possible led to no difference when adding \verb|#pr
 Afer some research, I found out the loop I had originally was being automatically vectorized by the compiler due to the \verb|-O3| 
 flag turning on the \verb|-ftree-vectorize| flag. I believe understanding more about how compilers optimize our 
 code, oftentimes even better than any human could, is crucial to being a good programmer.\\
+\indent The figure below shows the time difference between the OpenMP implementation and the sequential implementation. 
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.5\textwidth]{Figures/graphs/cpu_cmp.pdf}}%
+    \caption{Time Difference When Using OpenMP}
+    \label{fig:omp ftw}
+\end{figure}
 
 \section{CUDA Occupancy}
 Before discussing the GPU implementations, I feel it is important to discuss the CUDA Occupancy achieved in them. 
 I use a total of 12,288 bytes of shared memory since each block utilizes a shared array of 
-768 (this is the block size) \verb|float4|s, each having a size of 16 bytes. Using the CUDA Occupancy calculator (CITE LEI MAO HERE)
-I was able to determine that my implementation is at 100\% occupancy. \\
-PUT THE STUFF WITH THE GRAPHS FROM THE SHEET HERE AND STUFF HERE \\
+768 (this is the block size) \verb|float4|s, each having a size of 16 bytes. Using the CUDA Occupancy calculator \cite{Mao_2022}
+I was able to determine that my implementation is at 100\% occupancy, as seen in the screenshots from the calculator below.
+\begin{figure}[H]%
+    \centering
+    \subfloat[\centering Calculator Showing 100\% Occupancy Configuration]{{\includegraphics[width=7cm]{Figures/calculator.png} }}%
+    \qquad
+    \subfloat[\centering Graph Of Best Number of Threads per Block]{{\includegraphics[width=7cm]{Figures/occupancy_graph.png} }}%
+    \caption{Results of the Occupancy Calculator}%
+    \label{fig:graphs n stuff yep}%
+    \cite{Mao_2022}
+\end{figure}
+
 \indent I originally was using 1024 threads per block, which increased the shared memory size per block to be 16,384 bytes. However, 
 using the occupancy calculator I discovered this was only utilizing 67\% occupancy. After switching from 1024 threads per block
 to 768, I noticed a consistent 1 to 2 millisecond speed up when simulating 30,000 bodies. This speed up scaled appropriately while increasing 
@@ -169,25 +185,51 @@ algorithm that uses shared memory and loop unrolling. Since the simple version i
         __syncthreads();
 \end{lstlisting}
 The code then iterates over the array and calculates the interaction between the body corresponding to the thread running the code (determined by the global thread ID) and every body in the array. This is very similar to the inner loop to the CPU version except for a \verb|#pragma unroll| placed above it so it will not be displayed here. One of the first thoughts I had was to launch another kernel from this one to parallelize this for-loop, but since each thread would be updating the same force I'd have to use atomic operations which would just slow it down anyway. Finally, something similar to the CPU code is done to calculate the ineraction between the current body and the large, dense center mass. The velocity vector is updated by calculating the acceleration from the force vector over $dt$ and similarly the position vector is updated by calculating the displacement from the velocity vector over $dt$.\\
+\indent The figure below shows the difference in time between the optimized CUDA code and the basic code.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.5\textwidth]{Figures/graphs/cuda_cmp.pdf}}%
+    \caption{Time Difference Between CUDA Implementations}
+    \label{fig:cuda time}
+\end{figure}
 \indent While I have not tested putting the bodies in constant memory, I believe my implementation may provide similar speeds or even greater since it requires only one kernel launch and uses shared memory. Also, using constant memory wouldn't work once the number of bodies surpasses $N = 2,048$. This is because each body has two \verb|float4|s to store its position, velocity, and mass which totals 32 bytes. Since constant memory is limited to 65,536 kilobytes, our number of bodies is also limited. This method, using a constant amount of shared memory per block ($768\;\text{bodies}\;\times\;16\;\text{bytes/body}\;=\;12,288\;\text{bytes}$) allows us to simulate any number of bodies.
 
-\section{Other GPU Optimizations}
+\section{GPU Optimizations}
 \indent There are three more optimizations I used to make the CUDA code as efficient as possible in both versions and they include the \verb|-ftz=True| compiler flag, using \verb|float4|s rather than regular floats, and using a structure of arrays. \\
 \indent The CPU code uses an array of structures to represent the simulation, where each structure represents a body and has float fields for the body's x, y, z position and velocity and a field for its mass. The GPU code uses a single structure of arrays that represents the entire simulation. This structure has two \verb|float4| arrays, where the first array of \verb|float4|s stores each body's x, y, z position and mass, and the other stores each body's velocity. Using the structure of arrays enables greater memory coalescing and uses bandwidth more efficiently.\\
 \indent \verb|Float4|s achieve better performance on the GPU because they utilize vectorized memory accesses \cite{Luitjens_2013}. Experiments have shown that using \verb|float4|s rather than regular floats can increase speeds by up to 25\% \cite{Vitality_2014}. The reason for this is twofold: "multi-word vector memory accesses only require a single instruction to be issued, so the bytes per instruction ratio is higher", and "vector sized transaction request from a warp results in a larger net memory throughput per transaction" \cite{talonmies_2015}. Therefore, by using \verb|float4|s I achieve significant speed-ups on top of using a structure of arrays.\\
 \indent The \verb|-ftz=true| flag flushes what are known as "denormal values" to zero. This is by far the most interesting optimization I learned about while doing research for this project. Denormal values are floating point numbers where the mantissa is normalized and the leading zeros from it are moved into the exponent, resulting in an exponent that is too small and cannot be represented \cite{Harris_2013}. These numbers can slow down computation time significantly, especially for functions like \verb|sqrtf()| and \verb|rsqrtf()|. Since these numbers are so small, flushing them to zero does not affect accuracy at all. Using the \verb|-ftz=true| flag will flush all denormalized numbers to be flushed to zero, which doesn't have a performance impact on adds or multiplies but it does for functions like \verb|rsqrtf()| which map to hardware instructions, sometimes providing a 20\% speed increase \cite{Harris_2013}. I did not see this significant of a speed increase, but saw a small one nonetheless as shown in the figure below. 
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{Figures/graphs/ftz_cmp.pdf}}%
-    \caption{Time Difference when using -ftz=true}
-    \label{fig:swappinggggggg}
-    
+    \makebox[\textwidth][c]{\includegraphics[width=0.5\textwidth]{Figures/graphs/test_ftz.pdf}}%
+    \caption{Time Difference When Using -ftz=true}
+    \label{fig:ftz_moment}
 \end{figure}
 
-\section{Discussion}
-what was cool about this brah?
-what could i do different or add to this and stuff yeah
-any limits bro?
+\section{Other Time Experiments}
+\indent I performed two more timing experiments. One plots the times between all of the implementations and the other plots the time comparison of the naive (sequential) CPU and the optimized CUDA code. The reason the graphs are cut off for the OpenMP and sequential CPU implementations are a certain point is because they began to take a very long time and plotting them would interfere with the readability of the graph. Considering the fact the simulation runs in $O(n^2)$ time we can imagine their graphs continuing in a nearly vertical fashion.
+% \begin{figure}[H]
+%     \centering
+%     \makebox[\textwidth][c]{\includegraphics[width=0.5\textwidth]{Figures/graphs/big_graph.pdf}}%
+%     \caption{Time Difference Between All Implementations}
+%     \label{fig:bigggggg graph moment}
+% \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \makebox[\textwidth][c]{\includegraphics[width=0.5\textwidth]{Figures/graphs/fastslow_cmp.pdf}}%
+%     \caption{Time Difference Between Sequential CPU and Optimized CUDA}
+%     \label{fig:ftz_moment}
+% \end{figure}
+\begin{figure}[H]%
+    \centering
+    \subfloat[\centering Time Difference Between All Implementations]{{\includegraphics[width=7cm]{Figures/graphs/big_graph.pdf} }}%
+    \qquad
+    \subfloat[\centering Time Difference Between Sequential CPU and Optimized CUDA]{{\includegraphics[width=7cm]{Figures/graphs/fastslow_cmp.pdf} }}%
+    \caption{More Comparisons}%
+    \label{fig:moar graphszzzz}%
+    \cite{Mao_2022}
+\end{figure}
 
 \section{Conclusion}
-gpu rules parallelism is great yeah i be balling uh-huh yeah
+This project demonstrates the benefit of parallelizing programs such as the N-Body simulation and the different performance gains based on how the code is parallelized. In an ideal world I would have an AMD Threadripper to see how fast the OpenMP version could run on 128 threads, but the 12 threads on my 5600X have done a good job at displaying the power of CPU parallelization. Clearly, the performance gains from using the GPU dwarf those of the parallel CPU code. Unfortunately, since this computation is I/O bound I could not test the GPU implementation for $N > 3,000,000$ as the memory transfers between the host and device started to take a very, very long time (upwards of a couple hours for multiple iterations) and I did not need my PC to reach the temperature of the Sun.\\
+\indent With this project, I learned a lot about CUDA programming, CUDA optimizations, OpenMP, hardware limitations, memory access patterns, and \LaTeX. 
