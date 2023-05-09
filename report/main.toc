@@ -1,9 +1,11 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {section}{\numberline {2}Computer Specifications}{1}{section.2}%
-\contentsline {section}{\numberline {3}Suitability for GPU Acceleration}{2}{section.3}%
+\contentsline {section}{\numberline {2}Hardware Specifications}{2}{section.2}%
+\contentsline {section}{\numberline {3}Suitability for GPU Acceleration - Amdahl's Law}{2}{section.3}%
 \contentsline {section}{\numberline {4}CPU Implementations}{2}{section.4}%
-\contentsline {section}{\numberline {5}GPU Implementations}{2}{section.5}%
-\contentsline {section}{\numberline {6}Time Comparisons}{2}{section.6}%
-\contentsline {section}{\numberline {7}Discussion}{2}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{2}{section.8}%
+\contentsline {section}{\numberline {5}CUDA Occupancy}{3}{section.5}%
+\contentsline {section}{\numberline {6}GPU Implementations}{4}{section.6}%
+\contentsline {section}{\numberline {7}Time Comparisons}{4}{section.7}%
+\contentsline {section}{\numberline {8}Discussion}{4}{section.8}%
+\contentsline {section}{\numberline {9}Conclusion}{4}{section.9}%
+\contentsline {section}{\numberline {10}References}{5}{section.10}%
 \contentsfinish 
